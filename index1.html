@@ -25,7 +25,7 @@ height: 100vh;
         
 
 .player-container {
-            background-color: #ffb6c1;
+            background-color: #ff69b4;
             border-radius: 50%;
             padding: 40px;
             
@@ -43,184 +43,145 @@ flex;
 
  transition: transform 0.3s ease;
             overflow: hidden;
-            border: 5px solid #f0f; 
         }
         
-        
-
-.controls {
+        .controls {
             display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-
+  
 
-top: 20px;
-            margin-bottom: 10px;
+          justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+            margin-bottom: 
+
+10px;
             width: 100%;
             height: 100%;
         }
         
         button {
-  
+            background-color: #ff1493;
+ 
 
-          background-color: #ff1493;
-            border: none;
+           border: none;
             border-radius: 50%;
             width: 60px;
-          
+            height: 60px;
+            cursor: 
 
-  height: 60px;
-            cursor: pointer;
+pointer;
             box-shadow: 0 3px 5px rgba(0,0,0,0.2);
-            transition: all 0.3s 
-
-ease;
+            transition: all 0.3s ease;
         }
         
         h2 {
-            color: white;
-            margin-bottom: 20px;
-            text-shadow: 1px 1px 
+ 
 
-3px rgba(0,0,0,0.2);
+           color: white;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
         }
         
         .volume-control {
             width: 100%;
             margin-top: 20px;
         }
+        
+        input[type="range"] {
   
 
-      
-        input[type="range"] {
-            width: 100%;
+          width: 100%;
             height: 8px;
             -webkit-appearance: none;
-      
+            background: #ffb6c1;
+           
 
-      background: #ffb6c1;
-            border-radius: 5px;
+ border-radius: 5px;
             outline: none;
         }
         
-        input
+        input[type="range"]::-webkit-slider-thumb {
+            
 
-[type="range"]::-webkit-slider-thumb {
-            -webkit-appearance: none;
+-webkit-appearance: none;
             width: 20px;
             height: 20px;
-  
+            background: white;
+            border-
 
-          background: white;
-            border-radius: 50%;
+radius: 50%;
             cursor: pointer;
-            box-shadow: 0 2px 3px 
-
-rgba(0,0,0,0.2);
+            box-shadow: 0 2px 3px rgba(0,0,0,0.2);
         }
     </style>
-    <script type="importmap">
-        {
-            "imports": {
-                "vue": 
-
-"https://unpkg.com/vue@3/dist/vue.esm-browser.js"
-            }
-        }
-    </script>
 </head>
-
-
 <body>
-    <div id="app">
-        <div class="player-container">
-            <h2 style="font-size: 1.2rem">{{ stationName }}
+  
 
-</h2>
-            <div class="controls">
-                <button id="playBtn" @click="togglePlay">
-                    <svg 
+  <div class="player-container">
+        <h2 style="font-size: 1.2rem">Sky Radio</h2>
+        <div class="controls">
+            
 
-viewBox="0 0 24 24">
-                        <path :d="isPlaying ? pauseIcon : playIcon"/>
-                    </svg>
-           
+<button id="playBtn">
+                <svg viewBox="0 0 24 24">
+                    <path d="M8 5v14l11-7z"/>
+                
 
-     </button>
-            </div>
-            <div class="volume-control">
-                <input type="range" id="volumeSlider" 
+</svg>
+            </button>
+        </div>
+        <div class="volume-control">
+            <input type="range" 
 
-min="0" max="1" step="0.1" v-model="volume">
-            </div>
+id="volumeSlider" min="0" max="1" step="0.1" value="0.7">
         </div>
     </div>
 
-    <script type="module">
+    <script>
+        const audio = new Audio
+
+('https://uk18freenew.listen2myradio.com/live.mp3?typeportmount=s1_27215_stream');
+        const playBtn = 
+
+document.getElementById('playBtn');
+        const volumeSlider = document.getElementById('volumeSlider');
+        let isPlaying 
+
+= false;
+
+        playBtn.addEventListener('click', () => {
+            if (isPlaying) {
+                audio.pause();
+           
+
+     playBtn.innerHTML = `<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>`;
+                isPlaying = false;
         
 
-import { createApp, ref, watch } from 'vue';
+    } else {
+                audio.play();
+                playBtn.innerHTML = `<svg viewBox="0 0 24 24"><path d="M6 
 
-        createApp({
-            setup() {
-                const stationName = ref
+19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>`;
+                isPlaying = true;
+            }
+        });
 
-('Sky Radio');
-                const audio = new Audio('https://uk18freenew.listen2myradio.com/live.mp3?
+        
 
-typeportmount=s1_27215_stream');
-                const isPlaying = ref(false);
-                const volume = ref(0.7);
+volumeSlider.addEventListener('input', () => {
+            audio.volume = volumeSlider.value;
+        });
 
-         
-
-       const playIcon = "M8 5v14l11-7z";
-                const pauseIcon = "M6 19h4V5H6v14zm8-14v14h4V5h-4z";
-
-                
-
-audio.volume = volume.value;
-
-                watch(volume, (newVolume) => {
-                    audio.volume = newVolume;
-       
-
-         });
-
-                const togglePlay = () => {
-                    if (isPlaying.value) {
-                        
-
-audio.pause();
-                        isPlaying.value = false;
-                    } else {
-                        audio.play
-
-();
-                        isPlaying.value = true;
-                    }
-                };
-
-                
+        
 
 audio.addEventListener('ended', () => {
-                    isPlaying.value = false;
-                });
+            playBtn.innerHTML = `<svg viewBox="0 0 24 24"><path d="M8 5v14l11-
 
-                return 
-
-{
-                    stationName,
-                    isPlaying,
-                    volume,
-                    togglePlay,
-     
-
-               playIcon,
-                    pauseIcon
-                };
-            }
-        }).mount('#app');
+7z"/></svg>`;
+            isPlaying = false;
+        });
     </script>
 </body>
 </html>
