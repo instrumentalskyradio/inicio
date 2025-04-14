@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -132,6 +132,95 @@ rgba(0,0,0,0.2);
 
 
 <body>
-  <center><audio autoplay controls="controls"> <source src="https://uk18freenew.listen2myradio.com/live.mp3?typeportmount=s1_27215_stream" type="audio/mpeg" /> </audio></center>   
+    <div id="app">
+        <div class="player-container">
+            <h2 style="font-size: 1.2rem">{{ stationName }}
+
+</h2>
+            <div class="controls">
+                <button id="playBtn" @click="togglePlay">
+                    <svg 
+
+viewBox="0 0 24 24">
+                        <path :d="isPlaying ? pauseIcon : playIcon"/>
+                    </svg>
+           
+
+     </button>
+            </div>
+            <div class="volume-control">
+                <input type="range" id="volumeSlider" 
+
+min="0" max="1" step="0.1" v-model="volume">
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        
+
+import { createApp, ref, watch } from 'vue';
+
+        createApp({
+            setup() {
+                const stationName = ref
+
+('Sky Radio');
+                const audio = new Audio('https://uk18freenew.listen2myradio.com/live.mp3?
+
+typeportmount=s1_27215_stream');
+                const isPlaying = ref(false);
+                const volume = ref(0.7);
+
+         
+
+       const playIcon = "M8 5v14l11-7z";
+                const pauseIcon = "M6 19h4V5H6v14zm8-14v14h4V5h-4z";
+
+                
+
+audio.volume = volume.value;
+
+                watch(volume, (newVolume) => {
+                    audio.volume = newVolume;
+       
+
+         });
+
+                const togglePlay = () => {
+                    if (isPlaying.value) {
+                        
+
+audio.pause();
+                        isPlaying.value = false;
+                    } else {
+                        audio.play
+
+();
+                        isPlaying.value = true;
+                    }
+                };
+
+                
+
+audio.addEventListener('ended', () => {
+                    isPlaying.value = false;
+                });
+
+                return 
+
+{
+                    stationName,
+                    isPlaying,
+                    volume,
+                    togglePlay,
+     
+
+               playIcon,
+                    pauseIcon
+                };
+            }
+        }).mount('#app');
+    </script>
 </body>
 </html>
