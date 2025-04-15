@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html lang="es">
+  <!DOCTYPE html><html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -47,7 +46,7 @@
             border: none;
             border-radius: 50%;
             width: 60px;
-            height: 60px;
+          '  height: 60px;
             cursor: pointer;
             box-shadow: 0 3px 5px rgba(0,0,0,0.2);
             transition: all 0.3s ease;
@@ -80,7 +79,7 @@
             background: white;
             border-radius: 50%;
             cursor: pointer;
-            box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 2px 3px rgba(0,0,0,0.2);
         }
     </style>
     <script type="importmap">
@@ -92,14 +91,15 @@
     </script>
 </head>
 
-<body>
+
+<center><body>
     <div id="app">
         <div class="player-container">
             <h2 style="font-size: 1.2rem">{{ stationName }}</h2>
             <div class="controls">
                 <button id="playBtn" @click="togglePlay">
-                    <svg viewBox="0 0 24 24" fill="white">
-                        <path :d="isPlaying ? pauseIcon : playIcon" />
+                    <svg viewBox="0 0 24 24">
+                        <path :d="isPlaying ? pauseIcon : playIcon"/>
                     </svg>
                 </button>
             </div>
@@ -153,5 +153,26 @@
             }
         }).mount('#app');
     </script>
+
+
+
+<br>
+<br>
+
+<div> <audio controls >
+
+      <source src="https://uk2freenew.listen2myradio.com/live.mp3?typeportmount=s2_10951_stream " type="audio/mpeg">
+      <source src="https://uk2freenew.listen2myradio.com/live.mp3?typeportmount=s2_10951_stream_184622737" type="audio/mpeg">
+      <source src="https://uk2freenew.listen2myradio.com/live.mp3?typeportmount=s2_10951_stream_32387800" type="audio/mpeg">
+      <source src="" type="audio/mpeg">
+      <source src="" type="audio/mpeg">
+      <source src="" type="audio/mpeg">
+      Your browser does not support the audio element.?&autoplay=1
+      </audio></div>
+ 
+
+</center>
+
+
 </body>
 </html>
