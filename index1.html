@@ -1,173 +1,215 @@
-<!DOCTYPE html>
-<html lang="es">
+<html>
 <head>
+  <title>Instrumental Sky Radio</title>
+  <style>
+    body {
+      background-color: royalblue; 
+      overflow: hidden; 
+      margin: 0; 
+      height: 100vh; 
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center; 
+    }
 
-<meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Instrumental Sky Radio</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            background-color: #ffc0cb;
-            font-family: 'Arial', sans-serif;
-        }
-        
-        .player-container {
-            background-color: #ffb6c1;
-            border-radius: 50%;
-            padding: 40px;
-            box-shadow: 0 10px 20px rgba(255, 105, 180, 0.3);
-            width: 200px;
-            height: 200px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            align-items: center;
-            transition: transform 0.3s ease;
-            overflow: hidden;
-            border: 5px solid #f0f; 
-        }
-        
-        .controls {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-top: 20px;
-            margin-bottom: 10px;
-            width: 100%;
-            height: 100%;
-        }
-        
-        button {
-            background-color: #ff1493;
-            border: none;
-            border-radius: 50%;
-            width: 60px;
-          '  height: 60px;
-            cursor: pointer;
-            box-shadow: 0 3px 5px rgba(0,0,0,0.2);
-            transition: all 0.3s ease;
-        }
-        
-        h2 {
-            color: white;
-            margin-bottom: 20px;
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
-        }
-        
-        .volume-control {
-            width: 100%;
-            margin-top: 20px;
-        }
-        
-        input[type="range"] {
-            width: 100%;
-            height: 8px;
-            -webkit-appearance: none;
-            background: #ffb6c1;
-            border-radius: 5px;
-            outline: none;
-        }
-        
-        input[type="range"]::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            width: 20px;
-            height: 20px;
-            background: white;
-            border-radius: 50%;
-            cursor: pointer;
-            box-shadow: 0 2px 3px rgba(0,0,0,0.2);
-        }
-    </style>
-    <script type="importmap">
-        {
-            "imports": {
-                "vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.js"
-            }
-        }
-    </script>
+    h1 {
+      text-align: center;
+      color: fuchsia;
+      margin-bottom: 20px;
+    }
+    audio {
+      background-color: pink;
+      display: block;
+      margin: 20px auto;
+      width: 50%;
+      border-radius: 20px;
+    }
+    audio::-webkit-media-controls-play-button,
+    audio::-webkit-media-controls-pause-button {
+        background-color: fuchsia;
+        border-radius: 50%;
+    }
+
+    audio::-webkit-media-controls-current-time-display,
+    audio::-webkit-media-controls-time-remaining-display {
+        color: fuchsia;
+    }
+
+    audio::-webkit-media-controls-timeline {
+        background-color: #f48fb1;
+        border-radius: 15px;
+    }
+
+    audio::-webkit-media-controls-volume-slider {
+        background-color: #f48fb1;
+        border-radius: 15px;
+    }
+
+    audio::-webkit-media-controls-mute-button {
+        background-color: fuchsia;
+        border-radius: 50%;
+    }
+
+    audio::-webkit-media-controls-volume-control-container {
+        background-color: pink;
+        border-radius: 15px;
+    }
+
+    #city {
+      display: none;
+    }
+
+    @keyframes parallax {
+      0% {
+        background-position: 0 150px;
+      }
+      100% {
+        background-position: 1000px 150px; 
+      }
+    }
+
+    #waves {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 100px; /* Adjust height as needed */
+      background: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"%3E%3Cdefs%3E%3ClinearGradient id="gradient" x1="0%" y1="50%" x2="100%" y2="50%"%3E%3Cstop offset="0%" stop-color="%23f0f" /%3E%3Cstop offset="100%" stop-color="%230ff" /%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath d="M0,56.5C119.2,53,321.5,46,457.8,54.5C623.5,65.5,807.7,90,933.3,58.3C1076.3,21.5,1198.8,22.8,1200,23.5V120H0Z" class="wave" fill="url(%23gradient)"/%3E%3C/svg%3E') repeat-x;
+      z-index: 0; /* Behind the audio player */
+      opacity: 0.7;
+    }
+
+    .wave {
+      animation: wave 7s cubic-bezier(0.36, 0.45, 0.63, 0.53) infinite, swell 7s ease -2s infinite;
+      transform: translate3d(0, 0, 0);
+    }
+
+    @keyframes wave {
+      0% {
+        margin-left: 0;
+      }
+      100% {
+        margin-left: -1200px;
+      }
+    }
+
+    @keyframes swell {
+      0%, 100% {
+        transform: translate3d(0, -25px, 0);
+      }
+      50% {
+        transform: translate3d(0, 5px, 0);
+      }
+    }
+
+    #clouds {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 50%;
+      overflow: hidden;
+    }
+
+    .cloud {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.6;
+      animation: drift 15s linear infinite;
+    }
+
+    .cloud:nth-child(1) {
+      width: 100px;
+      height: 50px;
+      top: 10%;
+      left: 10%;
+      background-color:  rgba(255, 255, 255, 0.7);
+      animation-delay: 0s;
+    }
+
+    .cloud:nth-child(2) {
+      width: 150px;
+      height: 75px;
+      top: 20%;
+      left: 30%;
+      background-color: rgba(255, 255, 255, 0.7);
+      animation-delay: 3s;
+    }
+
+    .cloud:nth-child(3) {
+      width: 120px;
+      height: 60px;
+      top: 30%;
+      left: 50%;
+      background-color: rgba(255, 255, 255, 0.7);
+      animation-delay: 6s;
+    }
+
+    .cloud:nth-child(4) {
+      width: 180px;
+      height: 90px;
+      top: 15%;
+      left: 70%;
+      background-color: rgba(255, 255, 255, 0.7);
+      animation-delay: 9s;
+    }
+
+    .cloud:nth-child(5) {
+      width: 140px;
+      height: 70px;
+      top: 25%;
+      left: 90%;
+     background-color: rgba(255, 255, 255, 0.7);
+      animation-delay: 12s;
+    }
+    
+    
+
+    @keyframes drift {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-100vw);
+      }
+    }
+
+  </style>
 </head>
+<body>
+  <h1>Instrumental Sky Radio</h1>
+  <audio id="myAudio" controls autoplay style="display: block; margin: 20px auto; width: 50%;">
+    <source src="https://uk2freenew.listen2myradio.com/live.mp3?typeportmount=s2_10951_stream_215883354" type="audio/mpeg">
+    <source src="https://uk2freenew.listen2myradio.com/live.mp3?typeportmount=s2_10951_stream_184622737" type="audio/mpeg">
+    <source src="https://uk2freenew.listen2myradio.com/live.mp3?typeportmount=s2_10951_stream_32387800" type="audio/mpeg">
+    <source src="" type="audio/mpeg">
+    <source src="" type="audio/mpeg">
+    <source src="" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
 
+  <div id="city"></div>
+  <div id="waves"></div>
+  <div id="clouds">
+    <div class="cloud" style="width: 100px; height: 50px; top: 10%; left: 10%; background-color:  rgba(255, 255, 255, 0.7);"></div>
+    <div class="cloud" style="width: 150px; height: 75px; top: 20%; left: 30%; background-color: rgba(255, 255, 255, 0.7);"></div>
+    <div class="cloud" style="width: 120px; height: 60px; top: 30%; left: 50%; background-color: rgba(255, 255, 255, 0.7);"></div>
+    <div class="cloud" style="width: 180px; height: 90px; top: 15%; left: 70%; background-color: rgba(255, 255, 255, 0.7);"></div>
+    <div class="cloud" style="width: 140px; height: 70px; top: 25%; left: 90%; background-color: rgba(255, 255, 255, 0.7);"></div>
+    
+  </div>
+  <script>
+    const audio = document.getElementById('myAudio');
+    const waves = document.getElementById('waves');
 
-<center><body>
-    <div id="app">
-        <div class="player-container">
-            <h2 style="font-size: 1.2rem">{{ stationName }}</h2>
-            <div class="controls">
-                <button id="playBtn" @click="togglePlay">
-                    <svg viewBox="0 0 24 24">
-                        <path :d="isPlaying ? pauseIcon : playIcon"/>
-                    </svg>
-                </button>
-            </div>
-            <div class="volume-control">
-                <input type="range" id="volumeSlider" min="0" max="1" step="0.1" v-model="volume">
-            </div>
-        </div>
-    </div>
+    audio.addEventListener('play', () => {
+      waves.style.animationPlayState = 'running';
+    });
 
-    <script type="module">
-        import { createApp, ref, watch } from 'vue';
-
-        createApp({
-            setup() {
-                const stationName = ref('Sky Radio');
-                const audio = new Audio ('https://uk2freenew.listen2myradio.com/live.mp3?typeportmount=s2_10951_stream');
-                const isPlaying = ref(false);
-                const volume = ref(0.5);
-
-                const playIcon = "M8 5v14l11-7z";
-                const pauseIcon = "M6 19h4V5H6v14zm8-14v14h4V5h-4z";
-
-                audio.volume = volume.value;
-
-                watch(volume, (newVolume) => {
-                    audio.volume = newVolume;
-                });
-
-                const togglePlay = () => {
-                    if (isPlaying.value) {
-                        audio.pause();
-                        isPlaying.value = false;
-                    } else {
-                        audio.play();
-                        isPlaying.value = true;
-                    }
-                };
-
-                audio.addEventListener('ended', () => {
-                    isPlaying.value = false;
-                });
-
-                return {
-                    stationName,
-                    isPlaying,
-                    volume,
-                    togglePlay,
-                    playIcon,
-                    pauseIcon
-                };
-            }
-        }).mount('#app');
-    </script>
-
-
-
-<br>
-<br>
-  <div> <audio controls >
-      <source src="https://uk2freenew.listen2myradio.com/live.mp3?typeportmount=s2_10951_stream" type="audio/mpeg">
-      <source src="https://uk2freenew.listen2myradio.com/live.mp3?typeportmount=s2_10951_stream_215883354" type="audio/mpeg">
-      <source src="https://uk2freenew.listen2myradio.com/live.mp3?typeportmount=s2_10951_stream_184622737" type="audio/mpeg">
-      <source src="" type="audio/mpeg">
-      <source src="" type="audio/mpeg">
-      Your browser does not support the audio element.?&autoplay=1
-  </audio></div>
-  </center>
- </body>
+    audio.addEventListener('pause', () => {
+      waves.style.animationPlayState = 'paused';
+    });
+  </script>
+</body>
 </html>
