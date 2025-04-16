@@ -22,8 +22,9 @@
       background-color: pink;
       display: block;
       margin: 20px auto;
-      width: 50%;
+      width: 75%; /* Increased width */
       border-radius: 20px;
+      max-width: 800px; /* Added max-width for larger screens */
     }
     audio::-webkit-media-controls-play-button,
     audio::-webkit-media-controls-pause-button {
@@ -175,11 +176,59 @@
       }
     }
 
+    #controls {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 10px;
+    }
+
+    #volume-slider {
+      width: 100px;
+      margin: 0 10px;
+    }
+
+    #pause-button {
+      background-color: fuchsia;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    /* Style for the volume slider to make it more visible */
+    input[type="range"] {
+        -webkit-appearance: none; /* Override default look */
+        width: 100px; /* Set a width */
+        height: 10px;
+        background: #ddd; /* Grey background */
+        border-radius: 5px; /* Rounded corners */
+        outline: none; /* Remove outline */
+        margin: 0 10px;
+    }
+
+    input[type="range"]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        width: 20px;
+        height: 20px;
+        background: fuchsia;
+        border-radius: 50%; /* Make it round */
+        cursor: pointer;
+    }
+
+    /* Firefox slider thumb style */
+    input[type="range"]::-moz-range-thumb {
+        width: 20px;
+        height: 20px;
+        background: fuchsia;
+        border-radius: 50%;
+        cursor: pointer;
+    }
   </style>
 </head>
 <body>
   <h1>Instrumental Sky Radio</h1>
-  <audio id="myAudio" controls autoplay style="display: block; margin: 20px auto; width: 50%;">
+  <audio id="myAudio" controls autoplay volume="0.5" style="display: block; margin: 20px auto; width: 75%; max-width: 800px; border-radius: 20px;">
     <source src="https://uk2freenew.listen2myradio.com/live.mp3?typeportmount=s2_10951_stream_215883354" type="audio/mpeg">
     <source src="https://uk2freenew.listen2myradio.com/live.mp3?typeportmount=s2_10951_stream_184622737" type="audio/mpeg">
     <source src="https://uk2freenew.listen2myradio.com/live.mp3?typeportmount=s2_10951_stream_32387800" type="audio/mpeg">
@@ -187,7 +236,13 @@
     <source src="" type="audio/mpeg">
     <source src="" type="audio/mpeg">
     Your browser does not support the audio element.
+
+    <div id="controls">
+      <input type="range" id="volume-slider" min="0" max="1" step="0.01" value="0.5">
+      <button id="pause-button">Pause</button>
+    </div>
   </audio>
+
 
   <div id="city"></div>
   <div id="waves"></div>
@@ -202,6 +257,8 @@
   <script>
     const audio = document.getElementById('myAudio');
     const waves = document.getElementById('waves');
+    const volumeSlider = document.getElementById('volume-slider');
+    const pauseButton = document.getElementById('pause-button');
 
     audio.addEventListener('play', () => {
       waves.style.animationPlayState = 'running';
@@ -209,6 +266,22 @@
 
     audio.addEventListener('pause', () => {
       waves.style.animationPlayState = 'paused';
+    });
+
+    volumeSlider.addEventListener('input', () => {
+      audio.volume = volumeSlider.value;
+    });
+
+    pauseButton.addEventListener('click', () => {
+      if (audio.paused) {
+        audio.play();
+        pauseButton.textContent = 'Pause';
+        waves.style.animationPlayState = 'running';
+      } else {
+        audio.pause();
+        pauseButton.textContent = 'Play';
+        waves.style.animationPlayState = 'paused';
+      }
     });
   </script>
 </body>
