@@ -1,289 +1,136 @@
-<html>
+<!DOCTYPE html>
+<html lang="es">
 <head>
-  <title>Instrumental Sky Radio</title>
-  <style>
-    body {
-      background-color: royalblue; 
-      overflow: hidden; 
-      margin: 0; 
-      height: 100vh; 
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center; 
-    }
+<meta charset="UTF-8">
+<title>Escuchas Sky Radio</title>
+<link rel="shortcut icon" 
 
-    h1 {
-      text-align: center;
-      color: fuchsia;
-      margin-bottom: 20px;
-    }
-    audio {
-      background-color: pink;
-      display: block;
-      margin: 20px auto;
-      width: 75%; /* Increased width */
-      border-radius: 20px;
-      max-width: 800px; /* Added max-width for larger screens */
-    }
-    audio::-webkit-media-controls-play-button,
-    audio::-webkit-media-controls-pause-button {
-        background-color: fuchsia;
-        border-radius: 50%;
-    }
+type="image/x-icon" href="favicon.ico" />
+<style>
+  body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: 
 
-    audio::-webkit-media-controls-current-time-display,
-    audio::-webkit-media-controls-time-remaining-display {
-        color: fuchsia;
-    }
+hidden;
+  }
 
-    audio::-webkit-media-controls-timeline {
-        background-color: #f48fb1;
-        border-radius: 15px;
-    }
+  body {
+    background-image: url("https://disenoswebpr.com/wp-content/uploads/2023/06/Como-Funciona-La-Radio-
 
-    audio::-webkit-media-controls-volume-slider {
-        background-color: #f48fb1;
-        border-radius: 15px;
-    }
-
-    audio::-webkit-media-controls-mute-button {
-        background-color: fuchsia;
-        border-radius: 50%;
-    }
-
-    audio::-webkit-media-controls-volume-control-container {
-        background-color: pink;
-        border-radius: 15px;
-    }
-
-    #city {
-      display: none;
-    }
-
-    @keyframes parallax {
-      0% {
-        background-position: 0 150px;
-      }
-      100% {
-        background-position: 1000px 150px; 
-      }
-    }
-
-    #waves {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 100px; /* Adjust height as needed */
-      background: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"%3E%3Cdefs%3E%3ClinearGradient id="gradient" x1="0%" y1="50%" x2="100%" y2="50%"%3E%3Cstop offset="0%" stop-color="%23f0f" /%3E%3Cstop offset="100%" stop-color="%230ff" /%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath d="M0,56.5C119.2,53,321.5,46,457.8,54.5C623.5,65.5,807.7,90,933.3,58.3C1076.3,21.5,1198.8,22.8,1200,23.5V120H0Z" class="wave" fill="url(%23gradient)"/%3E%3C/svg%3E') repeat-x;
-      z-index: 0; /* Behind the audio player */
-      opacity: 0.7;
-    }
-
-    .wave {
-      animation: wave 7s cubic-bezier(0.36, 0.45, 0.63, 0.53) infinite, swell 7s ease -2s infinite;
-      transform: translate3d(0, 0, 0);
-    }
-
-    @keyframes wave {
-      0% {
-        margin-left: 0;
-      }
-      100% {
-        margin-left: -1200px;
-      }
-    }
-
-    @keyframes swell {
-      0%, 100% {
-        transform: translate3d(0, -25px, 0);
-      }
-      50% {
-        transform: translate3d(0, 5px, 0);
-      }
-    }
-
-    #clouds {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 50%;
-      overflow: hidden;
-    }
-
-    .cloud {
-      position: absolute;
-      border-radius: 50%;
-      opacity: 0.6;
-      animation: drift 15s linear infinite;
-    }
-
-    .cloud:nth-child(1) {
-      width: 100px;
-      height: 50px;
-      top: 10%;
-      left: 10%;
-      background-color:  rgba(255, 255, 255, 0.7);
-      animation-delay: 0s;
-    }
-
-    .cloud:nth-child(2) {
-      width: 150px;
-      height: 75px;
-      top: 20%;
-      left: 30%;
-      background-color: rgba(255, 255, 255, 0.7);
-      animation-delay: 3s;
-    }
-
-    .cloud:nth-child(3) {
-      width: 120px;
-      height: 60px;
-      top: 30%;
-      left: 50%;
-      background-color: rgba(255, 255, 255, 0.7);
-      animation-delay: 6s;
-    }
-
-    .cloud:nth-child(4) {
-      width: 180px;
-      height: 90px;
-      top: 15%;
-      left: 70%;
-      background-color: rgba(255, 255, 255, 0.7);
-      animation-delay: 9s;
-    }
-
-    .cloud:nth-child(5) {
-      width: 140px;
-      height: 70px;
-      top: 25%;
-      left: 90%;
-     background-color: rgba(255, 255, 255, 0.7);
-      animation-delay: 12s;
-    }
-    
+Online-Disenos-Web.webp");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
     
 
-    @keyframes drift {
-      0% {
-        transform: translateX(0);
-      }
-      100% {
-        transform: translateX(-100vw);
-      }
-    }
+display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    font-family: sans-
 
-    #controls {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin-top: 10px;
-    }
+serif;
+    color: white;
+  }
 
-    #volume-slider {
-      width: 100px;
-      margin: 0 10px;
-    }
+  h1 {
+    text-shadow: 2px 2px 4px #000000;
+    margin-top: 50px;
+  }
 
-    #pause-button {
-      background-color: fuchsia;
-      color: white;
-      border: none;
-      padding: 5px 10px;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-    /* Style for the volume slider to make it more visible */
-    input[type="range"] {
-        -webkit-appearance: none; /* Override default look */
-        width: 100px; /* Set a width */
-        height: 10px;
-        background: #ddd; /* Grey background */
-        border-radius: 5px; /* Rounded corners */
-        outline: none; /* Remove outline */
-        margin: 0 10px;
-    }
+  #player-container {
+    
 
-    input[type="range"]::-webkit-slider-thumb {
-        -webkit-appearance: none;
-        width: 20px;
-        height: 20px;
-        background: fuchsia;
-        border-radius: 50%; /* Make it round */
-        cursor: pointer;
-    }
+background-color: rgba(0, 0, 0, 0.7);
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    margin-bottom: 
 
-    /* Firefox slider thumb style */
-    input[type="range"]::-moz-range-thumb {
-        width: 20px;
-        height: 20px;
-        background: fuchsia;
-        border-radius: 50%;
-        cursor: pointer;
-    }
-  </style>
+20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+    max-width: 500px;
+  }
+
+  #controls 
+
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+
+  button {
+    background-
+
+color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-
+
+decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 
+
+5px;
+  }
+
+  #volume-controls {
+    display: flex;
+    align-items: center;
+  }
+
+  input[type="range"] {
+    width: 100px;
+    margin-
+
+left: 10px;
+  }
+
+  #time-display {
+    margin-top: 10px;
+    font-size: 14px;
+  }
+</style>
 </head>
+
 <body>
-  <h1>Instrumental Sky Radio</h1>
-  <audio id="myAudio" controls autoplay volume="0.5" style="display: block; margin: 20px auto; width: 75%; max-width: 800px; border-radius: 20px;">
-    <source src="https://uk2freenew.listen2myradio.com/live.mp3?typeportmount=s2_10951_stream" type="audio/mpeg">
-    <source src="https://uk2freenew.listen2myradio.com/live.mp3?typeportmount=s2_10951_stream_215883354" type="audio/mpeg">
-    <source src="https://uk2freenew.listen2myradio.com/live.mp3?typeportmount=s2_10951_stream_184622737" type="audio/mpeg">
-    <source src="https://uk2freenew.listen2myradio.com/live.mp3?typeportmount=s2_10951_stream_32387800" type="audio/mpeg">
-    <source src="" type="audio/mpeg">
-    <source src="" type="audio/mpeg">
-    <source src="" type="audio/mpeg">
-    Your browser does not support the audio element.
 
-    <div id="controls">
-      <input type="range" id="volume-slider" min="0" max="1" step="0.01" value="0.5">
-      <button id="pause-button">Pause</button>
-    </div>
-  </audio>
+  <h1>Instrumental Sky 
 
+Radio</h1>
 
-  <div id="city"></div>
-  <div id="waves"></div>
-  <div id="clouds">
-    <div class="cloud" style="width: 100px; height: 50px; top: 10%; left: 10%; background-color:  rgba(255, 255, 255, 0.7);"></div>
-    <div class="cloud" style="width: 150px; height: 75px; top: 20%; left: 30%; background-color: rgba(255, 255, 255, 0.7);"></div>
-    <div class="cloud" style="width: 120px; height: 60px; top: 30%; left: 50%; background-color: rgba(255, 255, 255, 0.7);"></div>
-    <div class="cloud" style="width: 180px; height: 90px; top: 15%; left: 70%; background-color: rgba(255, 255, 255, 0.7);"></div>
-    <div class="cloud" style="width: 140px; height: 70px; top: 25%; left: 90%; background-color: rgba(255, 255, 255, 0.7);"></div>
-    
-  </div>
-  <script>
-    const audio = document.getElementById('myAudio');
-    const waves = document.getElementById('waves');
-    const volumeSlider = document.getElementById('volume-slider');
-    const pauseButton = document.getElementById('pause-button');
+  <audio controls >
 
-    audio.addEventListener('play', () => {
-      waves.style.animationPlayState = 'running';
-    });
+      <source src="https://uk2freenew.listen2myradio.com/live.mp3?
 
-    audio.addEventListener('pause', () => {
-      waves.style.animationPlayState = 'paused';
-    });
+typeportmount=s2_10951_stream_215883354" type="audio/mpeg">
+      <source 
 
-    volumeSlider.addEventListener('input', () => {
-      audio.volume = volumeSlider.value;
-    });
+src="https://uk2freenew.listen2myradio.com/live.mp3?typeportmount=s2_10951_stream_184622737" type="audio/mpeg">
+      <source 
 
-    pauseButton.addEventListener('click', () => {
-      if (audio.paused) {
-        audio.play();
-        pauseButton.textContent = 'Pause';
-        waves.style.animationPlayState = 'running';
-      } else {
-        audio.pause();
-        pauseButton.textContent = 'Play';
-        waves.style.animationPlayState = 'paused';
-      }
-    });
-  </script>
+src="https://uk2freenew.listen2myradio.com/live.mp3?typeportmount=s2_10951_stream_32387800" type="audio/mpeg">
+      <source 
+
+src="" type="audio/mpeg">
+      <source src="" type="audio/mpeg">
+      <source src="" type="audio/mpeg">
+      Your browser 
+
+does not support the audio element.?&autoplay=1
+      </audio>
+
 </body>
 </html>
