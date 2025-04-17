@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <title>Escuchas Sky Radio</title>
 <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
   body, html {
     margin: 0;
@@ -28,10 +29,11 @@
   h1 {
     text-shadow: 2px 2px 4px #000000;
     margin-top: 50px;
+    font-size: 2em; 
   }
 
   #player-container {
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: transparent;
     padding: 20px;
     border-radius: 10px;
     text-align: center;
@@ -51,7 +53,7 @@
   }
 
   button {
-    background-color: #4CAF50; /* Green */
+    background-color: #4CAF50; 
     border: none;
     color: white;
     padding: 10px 20px;
@@ -78,6 +80,39 @@
     margin-top: 10px;
     font-size: 14px;
   }
+
+  #loading-indicator {
+    display: none;
+    font-size: 1.2em;
+    margin-top: 20px;
+  }
+
+  #error-message {
+    display: none;
+    color: red;
+    margin-top: 20px;
+  }
+
+  @media (max-width: 600px) {
+    h1 {
+      font-size: 1.5em;
+      margin-top: 30px;
+    }
+
+    #player-container {
+      width: 95%;
+      padding: 15px;
+    }
+
+    button {
+      padding: 8px 16px;
+      font-size: 14px;
+    }
+
+    input[type="range"] {
+      width: 80px;
+    }
+  }
 </style>
 </head>
 
@@ -85,16 +120,36 @@
 
   <h1>Instrumental Sky Radio</h1>
 
-  <audio controls >
-
-      <source src="https://uk2freenew.listen2myradio.com/live.mp3?typeportmount=s2_10951_stream_215883354" type="audio/mpeg">
-      <source src="https://uk2freenew.listen2myradio.com/live.mp3?typeportmount=s2_10951_stream_184622737" type="audio/mpeg">
-      <source src="https://uk2freenew.listen2myradio.com/live.mp3?typeportmount=s2_10951_stream_32387800" type="audio/mpeg">
-      <source src="" type="audio/mpeg">
-      <source src="" type="audio/mpeg">
-      <source src="" type="audio/mpeg">
-      Your browser does not support the audio element.?&autoplay=1
+  <div id="player-container">
+      <audio id="audio-player" controls>
+          <source src="https://uk2freenew.listen2myradio.com/live.mp3?typeportmount=s2_10951_stream_215883354" type="audio/mpeg">
+          <source src="https://uk2freenew.listen2myradio.com/live.mp3?typeportmount=s2_10951_stream_184622737" type="audio/mpeg">
+          <source src="https://uk2freenew.listen2myradio.com/live.mp3?typeportmount=s2_10951_stream_32387800" type="audio/mpeg">
+          Your browser does not support the audio element.
       </audio>
+      <div id="loading-indicator">Loading radio stream...</div>
+      <div id="error-message"></div>
+  </div>
+
+  <script>
+      const audioPlayer = document.getElementById('audio-player');
+      const loadingIndicator = document.getElementById('loading-indicator');
+      const errorMessage = document.getElementById('error-message');
+
+      audioPlayer.addEventListener('waiting', () => {
+          loadingIndicator.style.display = 'block';
+      });
+
+      audioPlayer.addEventListener('canplay', () => {
+          loadingIndicator.style.display = 'none';
+      });
+
+      audioPlayer.addEventListener('error', () => {
+          loadingIndicator.style.display = 'none';
+          errorMessage.style.display = 'block';
+          errorMessage.textContent = 'Failed to load radio stream. Please check your internet connection and try again.';
+      });
+  </script>
 
 </body>
 </html>
