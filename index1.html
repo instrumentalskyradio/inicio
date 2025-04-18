@@ -4,14 +4,10 @@
 <head>
   <meta charset="UTF-8">
   <title>Escuchas Sky Radio</title>
-  <link rel="shortcut icon" 
-
-type="image/x-icon" href="favicon.ico" />
+  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    
-
-body,
+    body,
     html {
       margin: 0;
       padding: 0;
@@ -20,24 +16,16 @@ body,
     }
 
     body {
-      background-
-
-image: url("https://disenoswebpr.com/wp-content/uploads/2023/06/Como-Funciona-La-Radio-Online-Disenos-Web.webp");
-      
-
-background-repeat: no-repeat;
+      background-image: url("https://disenoswebpr.com/wp-content/uploads/2023/06/Como-Funciona-La-Radio-Online-Disenos-Web.webp");
+      background-repeat: no-repeat;
       background-size: cover;
       background-position: center;
       display: flex;
-      flex-
-
-direction: column;
+      flex-direction: column;
       justify-content: space-between;
       align-items: center;
       font-family: sans-serif;
-      color: 
-
-white;
+      color: white;
     }
 
     h1 {
@@ -46,23 +34,17 @@ white;
       font-size: 2em;
     }
 
-    #player-
-
-container {
+    #player-container {
       background-color: transparent;
       padding: 20px;
       border-radius: 10px;
       text-align: center;
-      
-
-margin-bottom: 20px;
+      margin-bottom: 20px;
       display: flex;
       flex-direction: column;
       align-items: center;
       width: 80%;
-      max-
-
-width: 500px;
+      max-width: 500px;
     }
 
     #loading-indicator {
@@ -71,9 +53,7 @@ width: 500px;
       margin-top: 20px;
     }
 
-    #error-
-
-message {
+    #error-message {
       display: none;
       color: red;
       margin-top: 20px;
@@ -81,9 +61,7 @@ message {
 
     @media (max-width: 600px) {
       h1 {
-        
-
-font-size: 1.5em;
+        font-size: 1.5em;
         margin-top: 30px;
       }
 
@@ -91,76 +69,49 @@ font-size: 1.5em;
         width: 95%;
         padding: 15px;
       }
-    
-
-}
+    }
   </style>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 <body>
 
-  <h1>Instrumental Sky 
-
-Radio</h1>
+  <h1>Instrumental Sky Radio</h1>
 
   <div id="player-container">
     <audio id="audio-player" controls>
 
- 
-<source src="https://uk2freenew.listen2myradio.com/live.mp3?typeportmount=s2_10951_stream_215883354"
-        
-
-type="audio/mpeg">
+ <source src="https://uk2freenew.listen2myradio.com/live.mp3?typeportmount=s2_10951_stream_215883354"
+  type="audio/mpeg">
       <source src="https://uk2freenew.listen2myradio.com/live.mp3?typeportmount=s2_10951_stream_184622737"
-  
-
-      type="audio/mpeg">
-      <source src="https://instrumentalradiosky.radio12345.com"
-        type="audio/mpeg">
-
-<source src="https://uk2freenew.listen2myradio.com/live.mp3?typeportmount=s2_10951_stream_215883354"
-      Your browser does 
-
-not support the audio element.
+  type="audio/mpeg">
+      <source src="https://uk2freenew.listen2myradio.com/live.mp3?typeportmount=s2_10951_stream_632379866"
+  type="audio/mpeg">
+      Your browser does not support the audio element.
     </audio>
 
     <div id="loading-indicator">Loading radio stream...</div>
-    <div id="error-
-
-message"></div>
+    <div id="error-message"></div>
   </div>
 
   <script>
     const audioPlayer = document.getElementById('audio-player');
-    const loadingIndicator = 
-
-document.getElementById('loading-indicator');
+    const loadingIndicator = document.getElementById('loading-indicator');
     const errorMessage = document.getElementById('error-message');
 
-    
-
-audioPlayer.addEventListener('waiting', () => {
+    audioPlayer.addEventListener('waiting', () => {
       loadingIndicator.style.display = 'block';
     });
 
-    
-
-audioPlayer.addEventListener('canplay', () => {
+    audioPlayer.addEventListener('canplay', () => {
       loadingIndicator.style.display = 'none';
     });
 
-    
-
-audioPlayer.addEventListener('error', () => {
+    audioPlayer.addEventListener('error', () => {
       loadingIndicator.style.display = 'none';
-      errorMessage.style.display = 
-
-'block';
+      errorMessage.style.display = 'block';
       errorMessage.textContent = 'Failed to load radio stream. Please check your internet connection and try again.';
- 
-
-   });
+    });
   </script>
 
 </body>
