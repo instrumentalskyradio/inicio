@@ -100,66 +100,67 @@ font-size: 1.5em;
 
 <body>
 
-  <h1>Instrumental Sky Radio</h1>
+  <h1>Instrumental Sky 
+
+Radio</h1>
 
   <div id="player-container">
     <audio id="audio-player" controls>
-      
-      <source src="https://uk2freenew.listen2myradio.com/live.mp3?typeportmount=s2_10951_stream_215883354"
+
+ 
+<source src="https://uk2freenew.listen2myradio.com/live.mp3?typeportmount=s2_10951_stream_215883354"
         
 
 type="audio/mpeg">
       <source src="https://uk2freenew.listen2myradio.com/live.mp3?typeportmount=s2_10951_stream_184622737"
   
 
-type="audio/mpeg">
-      <source src="https://uk2freenew.listen2myradio.com/live.mp3?typeportmount=s2_10951_stream_32387800"
-        
-        
-type="audio/mpeg">
-      <source src="https://uk2freenew.listen2myradio.com/live.mp3?typeportmount=s2_10951_stream"
+      type="audio/mpeg">
+      <source src="https://instrumentalradiosky.radio12345.com"
+        type="audio/mpeg">
 
-  
-type="audio/mpeg">
-      Your browser does not support the audio element.
-    
+<source src="https://uk2freenew.listen2myradio.com/live.mp3?typeportmount=s2_10951_stream_215883354"
+      Your browser does 
 
-</audio>
+not support the audio element.
+    </audio>
 
     <div id="loading-indicator">Loading radio stream...</div>
-    <div id="error-message"></div>
+    <div id="error-
+
+message"></div>
   </div>
 
   <script>
-    
+    const audioPlayer = document.getElementById('audio-player');
+    const loadingIndicator = 
 
-const audioPlayer = document.getElementById('audio-player');
-    const loadingIndicator = document.getElementById('loading-
-
-indicator');
+document.getElementById('loading-indicator');
     const errorMessage = document.getElementById('error-message');
 
-    audioPlayer.addEventListener('waiting', () 
+    
 
-=> {
+audioPlayer.addEventListener('waiting', () => {
       loadingIndicator.style.display = 'block';
     });
 
-    audioPlayer.addEventListener('canplay', () => {
-      
+    
 
-loadingIndicator.style.display = 'none';
+audioPlayer.addEventListener('canplay', () => {
+      loadingIndicator.style.display = 'none';
     });
 
-    audioPlayer.addEventListener('error', () => {
-      
+    
 
-loadingIndicator.style.display = 'none';
-      errorMessage.style.display = 'block';
-      errorMessage.textContent = 'Failed 
+audioPlayer.addEventListener('error', () => {
+      loadingIndicator.style.display = 'none';
+      errorMessage.style.display = 
 
-to load radio stream. Please check your internet connection and try again.';
-    });
+'block';
+      errorMessage.textContent = 'Failed to load radio stream. Please check your internet connection and try again.';
+ 
+
+   });
   </script>
 
 </body>
