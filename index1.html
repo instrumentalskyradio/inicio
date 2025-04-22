@@ -16,7 +16,9 @@
     }
 
     body {
-      background-image: url("https://disenoswebpr.com/wp-content/uploads/2023/06/Como-Funciona-La-Radio-Online-Disenos-Web.webp");
+      background-image: url("https://disenoswebpr.com/wp-content/uploads/2023/06/Como-Funciona-La-Radio-Online-Disenos-
+
+Web.webp");
       background-repeat: no-repeat;
       background-size: cover;
       background-position: center;
@@ -70,47 +72,6 @@
         padding: 15px;
       }
     }
-
-    #equalizer {
-      width: 100%;
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
-      height: 50px;
-      margin-top: 10px;
-    }
-
-    .bar {
-      width: 5px;
-      background-color: white;
-      animation: bar-animation 1s infinite alternate;
-    }
-
-    @keyframes bar-animation {
-      0% {
-        height: 5px;
-      }
-
-      100% {
-        height: 30px;
-      }
-    }
-
-    .bar:nth-child(2) {
-      animation-delay: 0.2s;
-    }
-
-    .bar:nth-child(3) {
-      animation-delay: 0.4s;
-    }
-
-    .bar:nth-child(4) {
-      animation-delay: 0.6s;
-    }
-
-    .bar:nth-child(5) {
-      animation-delay: 0.8s;
-    }
   </style>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
@@ -121,13 +82,20 @@
 
   <div id="player-container">
     <audio id="audio-player" controls>
+    
+     <source src="https://uk2freenew.listen2myradio.com/live.mp3?typeportmount=s2_10951_stream"type="audio/mpeg">
+     <source src="https://uk2freenew.listen2myradio.com/live.mp3?typeportmount=s2_10951_stream_215883354"
+ type="audio/mpeg">
+  
 
-      <source src="https://uk2freenew.listen2myradio.com/live.mp3?typeportmount=s2_10951_stream_215883354"
-        type="audio/mpeg">
-      <source src="https://uk2freenew.listen2myradio.com/live.mp3?typeportmount=s2_10951_stream_184622737"
-        type="audio/mpeg">
-      <source src="https://uk2freenew.listen2myradio.com/live.mp3?typeportmount=s2_10951_stream_632379866"
-        type="audio/mpeg">
+     <source src="https://uk2freenew.listen2myradio.com/live.mp3?typeportmount=s2_10951_stream_184622737"
+  type="audio/mpeg">
+ 
+
+     <source src="https://uk2freenew.listen2myradio.com/live.mp3?typeportmount=s2_10951_stream_632379866"
+  type="audio/mpeg">
+     <source src="https://server6.globalhostla.com:9012/stream" type="audio/mpeg">
+      
       Your browser does not support the audio element.
     </audio>
 
@@ -139,21 +107,17 @@
     const audioPlayer = document.getElementById('audio-player');
     const loadingIndicator = document.getElementById('loading-indicator');
     const errorMessage = document.getElementById('error-message');
-    const equalizer = document.getElementById('equalizer');
 
     audioPlayer.addEventListener('waiting', () => {
       loadingIndicator.style.display = 'block';
-      equalizer.style.display = 'none';
     });
 
     audioPlayer.addEventListener('canplay', () => {
       loadingIndicator.style.display = 'none';
-      equalizer.style.display = 'flex';
     });
 
     audioPlayer.addEventListener('error', () => {
       loadingIndicator.style.display = 'none';
-      equalizer.style.display = 'none';
       errorMessage.style.display = 'block';
       errorMessage.textContent = 'Failed to load radio stream. Please check your internet connection and try again.';
     });
