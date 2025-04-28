@@ -22,57 +22,117 @@
       background-position: center;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
       align-items: center;
       font-family: sans-serif;
       color: white;
+      position: relative;
+      padding-top: 20px;
+      box-sizing: border-box;
     }
+
+     /* Add a subtle overlay to improve text readability */
+    body::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.3);
+        z-index: -1;
+    }
+
 
     h1 {
       text-shadow: 2px 2px 4px #000000;
-      margin-top: 50px;
       font-size: 2em;
-    }
-
-    #player-container {
-      background-color: transparent;
-      padding: 20px;
-      border-radius: 10px;
-      text-align: center;
+      z-index: 1;
+      margin-top: 0;
       margin-bottom: 20px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      width: 80%;
-      max-width: 500px;
     }
 
-    #loading-indicator {
-      display: none;
-      font-size: 1.2em;
-      margin-top: 20px;
+    /* Container for player and select */
+    .player-controls-container {
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+        width: 90%;
+        max-width: 500px;
+        margin-bottom: 20px;
+        margin-top: auto; /* Push this container to the bottom */
     }
 
-    #error-message {
-      display: none;
-      color: red;
-      margin-top: 20px;
+    #reproductorBox {
+        width: 100%;
+        display: flex;
+        justify-content: center;
     }
+
+    #reproductor {
+        width: 100%;
+        max-width: 300px;
+        height: 37.5px;
+    }
+
+    #selectTrack {
+        width: 100%;
+        max-width: 400px;
+        padding: 10px;
+        border-radius: 5px;
+        border: none;
+        background-color: rgba(255, 255, 255, 0.8);
+        color: #333;
+        font-size: 1em;
+        cursor: pointer;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+         /* Add a dropdown arrow icon */
+        background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="%23333" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>');
+        background-repeat: no-repeat;
+        background-position: right 10px center;
+        background-size: 15px;
+        padding-right: 30px;
+    }
+
+     /* Style for the options in the select */
+    #selectTrack option {
+        padding: 10px;
+        background-color: white;
+        color: #333;
+    }
+
 
     @media (max-width: 600px) {
       h1 {
         font-size: 1.5em;
-        margin-top: 30px;
+        margin-bottom: 15px;
       }
+       body {
+           padding-top: 15px;
+       }
+       .player-controls-container {
+           width: 95%;
+           margin-bottom: 15px;
+       }
+       #selectTrack, #reproductor {
+           width: 100%;
+           max-width: none;
+       }
 
-      #player-container {
-        width: 95%;
-        padding: 15px;
-      }
     }
+
   </style>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
- <!-- Smartsupp Live Chat script -->
+    <script type="importmap">
+        {
+            "imports": {
+                // Add any future library imports here
+            }
+        }
+    </script>
+  <!-- Smartsupp Live Chat script -->
 <script type="text/javascript">
 var _smartsupp = _smartsupp || {};
 _smartsupp.key = '2c4a10481a1f7d1bad61e17bc9bd98f5f560b6f5';
@@ -83,52 +143,113 @@ window.smartsupp||(function(d) {
   c.src='https://www.smartsuppchat.com/loader.js?';s.parentNode.insertBefore(c,s);
 })(document);
 </script>
-<noscript> Powered by <a href=“https://www.smartsupp.com” target=“_blank”>Smartsupp</a></noscript>
+<noscript> Powered by 
+  <a href=“https://www.smartsupp.com” target=“_blank”>Smartsupp</a></noscript>
 </head>
 
 <body>
 
   <h1>Instrumental Sky Radio</h1>
-<marquee>ATENCI&OacuteN:ESCUCHA EL PROGRAMA "PRIMER CONTACTO", CON VICTOR MORENO DE LUNES A VIERNES A LAS 6:30 AM Y DIFERIDO A LAS 4 PM </marquee>
-  <div id="player-container">
-    <audio id="audio-player" controls>
-    <source src="https://uk19freenew.listen2myradio.com/live.mp3?typeportmount=ice_31399_stream_398515188"
-        type="audio/mpeg">
-      <source src="https://uk19freenew.listen2myradio.com/live.mp3?typeportmount=ice_31399_stream_493198624"
-        type="audio/mpeg">
-      <source src="https://uk19freenew.listen2myradio.com/live.mp3?typeportmount=ice_31399_stream_867962386"
-        type="audio/mpeg">
-    <source src="https://panel.retrolandigital.com/radio/8130/listen"
-        type="audio/mpeg">
-    <source src="https://stream.zeno.fm/tvqmp6dwk2zuv" 
-        type="audio/mpeg">
-      Your browser does not support the audio element.
-    </audio>
+  
+<div> 
+  <p>
+   <iframe src="https://www.ivoox.com/player_ej_43368107_6_1.html?c1=0c2454" width="150" height="180" frameborder="0" allowfullscreen="" scrolling="no" loading="lazy"></iframe>
+<b>Escucha ---Cinco estrategias para el uso de tabletas y celulares en los niños---
+POR CORTESIA DE"CORNETRON" El doctor las cornetas dañadas.</b>  
+ </p>  
+ </div>
+ <div class="player-controls-container">
+    <div id="reproductorBox"></div>
+    <select id = "selectTrack" onchange="cambiarTrack(this.options[this.selectedIndex]);">
+        <option path="https://uk19freenew.listen2myradio.com/live.mp3?typeportmount=ice_31399_stream_398515188">SKY RADIO "EN VIVO"</option>
+      <option path="https://node-07.zeno.fm/tvqmp6dwk2zuv.aac?rj-ttl=5&rj-tok=AAABc_GuYdEAgvYBZ9BdnZ-40Q">RADIO HISPANA</option>
+		<option path="https://panel.retrolandigital.com/listen/instrumental_hits_radio/listen">INSTRUMENTAL</option> 
+        <option path="https://acp4.lorini.net/proxy/ur2080?mp=/stream">UNION RADIO</option>
+        
+        <option path="https://laradiossl.online:9226/;">DJ SHAGGY VENEZUELA</option>
+        <option path="https://server6.globalhostla.com:9020/stream">CANDELA PURA</option>
+        <option path="https://stream.zeno.fm/naa84dtd6f8uv">CIMA 95.1 FM</option>
+        <option path="https://stream.zeno.fm/1jvlfyg36swuv">PURO LLANO RADIO</option>
+        <option path="https://stream.zeno.fm/12bg6xa7hv8uv">RADIO LLANEROS</option>
+        <option path="https://node-09.zeno.fm/2b9kfa1dzmzuv?">RADIO SALSA BAUL</option>
+        <option path="https://stream.zeno.fm/xnp3npkkvg0uv">WEEKEND Mix Radio</option>
+        <option path="https://acp4-cdn.lorini.net/proxy/ccsur?mp=/stream">UNION RADIO</option>
+        <option path="http://rnv.lorini.net:29100/RNVINFORMATIVO">RNVINFORMATIVO</option>
+        <option path="http://190.202.130.61:8000/lrds">LA RADIO DEL SUR</option>
+    </select>
+</div>
 
-    <div id="loading-indicator">Loading radio stream...</div>
-    <div id="error-message"></div>
-  </div>
 
-  <script>
-    const audioPlayer = document.getElementById('audio-player');
-    const loadingIndicator = document.getElementById('loading-indicator');
-    const errorMessage = document.getElementById('error-message');
+<script>
+    function cambiarTrack(track) {
+        // Check if track and its path attribute exist
+        if (!track || !track.getAttribute) {
+            console.error("Invalid track selected.");
+            return;
+        }
+        var path = track.getAttribute("path");
+        if (!path) {
+             console.error("Selected option has no 'path' attribute.");
+             return;
+        }
 
-    audioPlayer.addEventListener('waiting', () => {
-      loadingIndicator.style.display = 'block';
+        var viejo_audio = document.getElementById("reproductor");
+        var audio_padre = document.getElementById("reproductorBox"); 
+
+        // Remove existing audio element if it exists
+        if (viejo_audio) {
+            viejo_audio.pause(); // Pause before removing
+            audio_padre.removeChild(viejo_audio);
+        }
+
+
+        var nuevo_audio = document.createElement("audio");
+        nuevo_audio.setAttribute("id", "reproductor");
+        nuevo_audio.setAttribute("controls", "controls");
+        nuevo_audio.setAttribute("autoplay", "autoplay"); 
+
+        var source = document.createElement("source");
+        source.setAttribute("src", path);
+        source.setAttribute("type", "audio/mpeg"); 
+        source.setAttribute("id", "reproductorSource");
+
+        nuevo_audio.appendChild(source);
+        audio_padre.appendChild(nuevo_audio);
+
+         // Try loading the new source
+        nuevo_audio.load();
+        nuevo_audio.play().catch(error => {
+            console.log("Autoplay prevented:", error);
+            // You might want to show a message asking the user to click play
+        });
+    }
+
+    function cargarReproductor() {
+        var select = document.getElementById("selectTrack");
+        // Check if select and options exist
+        if (!select || !select.options || select.options.length < 1) {
+             console.error("Select element or options not found.");
+             return;
+        }
+
+        // Select the first actual radio option (index 0 based on the updated HTML)
+        var firstOption = select.options[0]; 
+        if (firstOption) {
+            // Set the select value to the first option's value so it's visually selected
+            select.value = firstOption.value;
+            // Call cambiarTrack with the first option to load and play it
+            cambiarTrack(firstOption);
+        } else {
+            console.error("No valid options available to load initially.");
+        }
+    }
+
+    // Run cargarReproductor when the DOM is fully loaded
+    document.addEventListener('DOMContentLoaded', function() {
+        cargarReproductor();
     });
+</script>
 
-    audioPlayer.addEventListener('canplay', () => {
-      loadingIndicator.style.display = 'none';
-    });
-
-    audioPlayer.addEventListener('error', () => {
-      loadingIndicator.style.display = 'none';
-      errorMessage.style.display = 'block';
-      errorMessage.textContent = 'Failed to load radio stream. Please check your internet connection and try again.';
-    });
-  </script>
 
 </body>
-
 </html>
