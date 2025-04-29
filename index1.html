@@ -2,6 +2,19 @@
 <html lang="es">
 
 <head>
+  <!-- Smartsupp Live Chat script -->
+<script type="text/javascript">
+var _smartsupp = _smartsupp || {};
+_smartsupp.key = '2c4a10481a1f7d1bad61e17bc9bd98f5f560b6f5';
+window.smartsupp||(function(d) {
+  var s,c,o=smartsupp=function(){ o._.push(arguments)};o._=[];
+  s=d.getElementsByTagName('script')[0];c=d.createElement('script');
+  c.type='text/javascript';c.charset='utf-8';c.async=true;
+  c.src='https://www.smartsuppchat.com/loader.js?';s.parentNode.insertBefore(c,s);
+})(document);
+</script>
+<noscript> Powered by
+  <a href=“https://www.smartsupp.com” target=“_blank”>Smartsupp</a></noscript>
   <meta charset="UTF-8">
   <title>Escuchas Sky Radio</title>
   <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
@@ -12,11 +25,13 @@
       margin: 0;
       padding: 0;
       height: 100%;
-      overflow: hidden;
+      overflow-x: hidden; /* Prevent horizontal scroll */
     }
 
     body {
-      background-image: url("https://disenoswebpr.com/wp-content/uploads/2023/06/Como-Funciona-La-Radio-Online-Disenos-Web.webp");
+      background-image:url("https://disenoswebpr.com/wp-content/uploads/2023/06/Como-Funciona-La-Radio-Online-Disenos-
+
+Web.webp");
       background-repeat: no-repeat;
       background-size: cover;
       background-position: center;
@@ -28,6 +43,8 @@
       position: relative;
       padding-top: 20px;
       box-sizing: border-box;
+      /* Add padding at the bottom equal to the height of the fixed player container */
+      padding-bottom: 100px; /* Adjust based on player container height */
     }
 
      /* Add a subtle overlay to improve text readability */
@@ -51,38 +68,42 @@
       margin-bottom: 20px;
     }
 
-    /* Container for player and select */
+    /* Container for player and select - Now Fixed */
     .player-controls-container {
-        z-index: 1;
+        z-index: 10; /* High z-index to be on top */
+        position: fixed; /* Fixed position */
+        bottom: 0; /* Align to the bottom */
+        left: 0; /* Align to the left */
+        width: 100%; /* Full width */
         display: flex;
         flex-direction: column;
         align-items: center;
         gap: 15px;
-        width: 90%;
-        max-width: 500px;
-        margin-bottom: 20px;
-        margin-top: auto; /* Push this container to the bottom */
+        padding: 15px 10px; /* Add some padding */
+        box-sizing: border-box; /* Include padding in width */
+        background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+        box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.5); /* Optional shadow */
     }
 
     #reproductorBox {
         width: 100%;
+        max-width: 500px; /* Match select max-width */
         display: flex;
         justify-content: center;
     }
 
     #reproductor {
         width: 100%;
-        max-width: 300px;
         height: 37.5px;
     }
 
     #selectTrack {
         width: 100%;
-        max-width: 400px;
+        max-width: 500px; /* Ensure select doesn't exceed container */
         padding: 10px;
         border-radius: 5px;
         border: none;
-        background-color: rgba(255, 255, 255, 0.8);
+        background-color: rgba(255, 255, 255, 0.9); /* Slightly less transparent */
         color: #333;
         font-size: 1em;
         cursor: pointer;
@@ -90,7 +111,9 @@
         -moz-appearance: none;
         appearance: none;
          /* Add a dropdown arrow icon */
-        background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="%23333" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>');
+        background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30"
+
+fill="%23333" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>');
         background-repeat: no-repeat;
         background-position: right 10px center;
         background-size: 15px;
@@ -104,6 +127,34 @@
         color: #333;
     }
 
+    /* Style for the status message */
+    #statusMessage {
+        color: white;
+        font-size: 0.9em;
+        height: 1.2em; /* Reserve space to prevent layout shifts */
+        text-align: center;
+        margin-top: 5px;
+        margin-bottom: 0; /* Remove bottom margin as it's at the very bottom */
+        flex-shrink: 0; /* Prevent message from shrinking */
+    }
+
+     /* Adjust iframe and text block positioning */
+    body > div:nth-of-type(1) { /* Target the first div containing iframe and text */
+        z-index: 1; /* Keep it above background overlay */
+        margin-bottom: 20px; /* Add some space before the fixed player area */
+         width: 90%; /* Match body max-width or adjust as needed */
+         max-width: 600px; /* Optional: Limit width for better readability */
+         text-align: center; /* Center content within the div */
+    }
+
+     body > div:nth-of-type(1) p {
+        margin-top: 10px;
+        margin-bottom: 10px;
+     }
+     body > div:nth-of-type(1) center {
+        margin-top: 10px;
+     }
+
 
     @media (max-width: 600px) {
       h1 {
@@ -112,14 +163,20 @@
       }
        body {
            padding-top: 15px;
+           padding-bottom: 120px; /* Increase padding for smaller screens if player height increases */
        }
        .player-controls-container {
-           width: 95%;
-           margin-bottom: 15px;
+            padding: 10px 5px; /* Reduce padding on smaller screens */
        }
-       #selectTrack, #reproductor {
-           width: 100%;
-           max-width: none;
+       #selectTrack, #reproductorBox {
+           width: 95%; /* Use more width on small screens */
+           max-width: none; /* Allow full width */
+       }
+       #reproductor {
+           max-width: none; /* Allow full width */
+       }
+       body > div:nth-of-type(1) {
+           width: 95%;
        }
 
     }
@@ -132,71 +189,103 @@
             }
         }
     </script>
-<!-- Smartsupp Live Chat script -->
-<script type="text/javascript">
-var _smartsupp = _smartsupp || {};
-_smartsupp.key = '2c4a10481a1f7d1bad61e17bc9bd98f5f560b6f5';
-window.smartsupp||(function(d) {
-  var s,c,o=smartsupp=function(){ o._.push(arguments)};o._=[];
-  s=d.getElementsByTagName('script')[0];c=d.createElement('script');
-  c.type='text/javascript';c.charset='utf-8';c.async=true;
-  c.src='https://www.smartsuppchat.com/loader.js?';s.parentNode.insertBefore(c,s);
-})(document);
-</script>
-<noscript> Powered by 
-  <a href=“https://www.smartsupp.com” target=“_blank”>Smartsupp</a></noscript>
-  
+
 </head>
 
 <body>
 
   <h1>Instrumental Sky Radio</h1>
-  
-<div> 
-  <p>
-   <iframe src="https://www.ivoox.com/player_ej_43368107_6_1.html?c1=0c2454" width="150" height="180" frameborder="0" allowfullscreen="" scrolling="no" loading="lazy"></iframe>
-<b>Escucha ---Cinco estrategias para el uso de tabletas y celulares en los niños---
-POR CORTESIA DE"CORNETRON" El doctor las cornetas dañadas.</b>  
- </p>  
- </div>
+
+<div>
+   <div>
+   <iframe src="https://www.ivoox.com/player_ej_43368107_6_1.html?c1=0c2454" width="150" height="185" frameborder="0"
+
+allowfullscreen="" scrolling="no" loading="lazy"></iframe>
+  <p>Escucha...Cinco estrategias para el uso de tabletas y celulares en los niños...
+Por cortesia de "CORNETR&Oacute
+N" El doctor las cornetas.</p>
+  <center><p> EFEMÈRIDES: DÌA INTERNACIONAL DE LA DANZA</p></center>
+  </div>
+</div>
+
  <div class="player-controls-container">
     <div id="reproductorBox"></div>
     <select id = "selectTrack" onchange="cambiarTrack(this.options[this.selectedIndex]);">
-	<option path="https://panel.retrolandigital.com/listen/instrumental_hits_radio/listen">MAS EMISORAS...</option>   
-        <option path="https://uk19freenew.listen2myradio.com/live.mp3?typeportmount=ice_31399_stream_398515188">SKY RADIO "EN VIVO"</option>
-        <option path="https://node-07.zeno.fm/tvqmp6dwk2zuv.aac?rj-ttl=5&rj-tok=AAABc_GuYdEAgvYBZ9BdnZ-40Q">RADIO HISPANA</option>
-		 
-        <option path="https://acp4.lorini.net/proxy/ur2080?mp=/stream">UNION RADIO</option>
-        
-        <option path="https://laradiossl.online:9226/;">DJ SHAGGY VENEZUELA</option>
-        <option path="https://server6.globalhostla.com:9020/stream">CANDELA PURA</option>
-        <option path="https://stream.zeno.fm/naa84dtd6f8uv">CIMA 95.1 FM</option>
-        <option path="https://stream.zeno.fm/1jvlfyg36swuv">PURO LLANO RADIO</option>
-        <option path="https://stream.zeno.fm/12bg6xa7hv8uv">RADIO LLANEROS</option>
-        <option path="https://node-09.zeno.fm/2b9kfa1dzmzuv?">RADIO SALSA BAUL</option>
-        <option path="https://stream.zeno.fm/xnp3npkkvg0uv">WEEKEND Mix Radio</option>
-        <option path="https://acp4-cdn.lorini.net/proxy/ccsur?mp=/stream">UNION RADIO</option>
-        <option path="http://rnv.lorini.net:29100/RNVINFORMATIVO">RNVINFORMATIVO</option>
-        <option path="http://190.202.130.61:8000/lrds">LA RADIO DEL SUR</option>
+              <option path="https://uk19freenew.listen2myradio.com/live.mp3?typeportmount=ice_31399_stream">SKY RADIO x       
+
+        cortesia de CORNETRON </option>
+              <option path="https://uk19freenew.listen2myradio.com/live.mp3?typeportmount=ice_31399_stream">SKY RADIO x       
+
+              cortesia de CORNETRON </option>
+              <option path="http://panel.retrolandigital.com/listen/instrumental_hits_radio/listen">INSTRUMENTAL HITS         
+
+              RADIO</option>
+
+              <option path="https://node-07.zeno.fm/tvqmp6dwk2zuv.aac?rj-ttl=5&rj-tok=AAABc_GuYdEAgvYBZ9BdnZ-40Q">RADIO       
+
+              HISPANA</option>
+              <option path="https://acp4.lorini.net/proxy/ur2080?mp=/stream">UNION RADIO</option>
+      
+              <option path="https://stream.zeno.fm/c3q3w8zfe18uv">RADIO RUMBOS</option>
+             
+              <option path="https://server6.globalhostla.com:9014/stream">RQ 910 AM</option>
+              <option path="https://laradiossl.online:9226/;">DJ SHAGGY VENEZUELA</option>
+              <option path="https://cast20.plugstreaming.com:2020/stream/r981">RUMBA FM</option>     
+              <option path="https://server6.globalhostla.com:9020/stream">CANDELA PURA</option>
+              <option path="https://stream.zeno.fm/e2kzfpr34d0uv">FIESTA LATINA</option>
+              <option path="https://usa14.fastcast4u.com/proxy/fullexitos?mp=/1">FULL EXITO RADIO</option>
+              <option path="https://stream.zeno.fm/naa84dtd6f8uv">CIMA 95.1 FM</option>
+              <option path="https://streamingned.com:7074/; external stream link">LA MUNDIAL FM VALENCIA</option>
+              <option path="https://stream.zeno.fm/1jvlfyg36swuv">PURO LLANO RADIO</option>
+              <option path="https://stream.zeno.fm/12bg6xa7hv8uv">RADIO LLANEROS</option>
+              <option path="https://server6.globalhostla.com:9012/stream">FIESTA</option>   
+              <option path="https://node-09.zeno.fm/2b9kfa1dzmzuv?">RADIO SALSA BAUL</option>
+              <option path="https://stream.zeno.fm/xnp3npkkvg0uv">WEEKEND Mix Radio</option>
+              <option path="https://sc10.conectarhosting.com/proxy/djcarlo1?mp=/stream">DJ CARLOS RADIO</option>
+              <option path="http://rnv.lorini.net:29100/RNVINFORMATIVO">RNVINFORMATIVO</option>
+              <option path="https://24253.live.streamtheworld.com/CARACOL_RADIOAAC.aac?dist=onlineradiobox">CARACOL 
+
+RADIO</option>
     </select>
+    <div id="statusMessage"></div> <!-- Added status message div -->
 </div>
 
 
 <script>
+    // Function to update the status message
+    function updateStatus(message) {
+        const statusDiv = document.getElementById('statusMessage');
+        if (statusDiv) {
+            statusDiv.textContent = message;
+        }
+    }
+
     function cambiarTrack(track) {
         // Check if track and its path attribute exist
         if (!track || !track.getAttribute) {
             console.error("Invalid track selected.");
+            updateStatus("Error loading track.");
             return;
         }
         var path = track.getAttribute("path");
         if (!path) {
+             // If the selected option is the disabled placeholder, just clear status and return
+             if (track.disabled && track.selected) {
+                 updateStatus("");
+                 var viejo_audio = document.getElementById("reproductor");
+                  if (viejo_audio) {
+                     viejo_audio.pause();
+                     // Keep the player element visible but paused
+                  }
+                 return;
+             }
              console.error("Selected option has no 'path' attribute.");
+             updateStatus("Error: Invalid stream path.");
              return;
         }
 
         var viejo_audio = document.getElementById("reproductor");
-        var audio_padre = document.getElementById("reproductorBox"); 
+        var audio_padre = document.getElementById("reproductorBox");
 
         // Remove existing audio element if it exists
         if (viejo_audio) {
@@ -204,16 +293,55 @@ POR CORTESIA DE"CORNETRON" El doctor las cornetas dañadas.</b>
             audio_padre.removeChild(viejo_audio);
         }
 
+        updateStatus("Loading..."); // Show loading status
 
         var nuevo_audio = document.createElement("audio");
         nuevo_audio.setAttribute("id", "reproductor");
         nuevo_audio.setAttribute("controls", "controls");
-        nuevo_audio.setAttribute("autoplay", "autoplay"); 
+        nuevo_audio.setAttribute("autoplay", "autoplay"); // Autoplay is attempted
+
+        // Add event listeners for status messages
+        nuevo_audio.addEventListener('loadstart', () => updateStatus('Loading...'));
+        nuevo_audio.addEventListener('waiting', () => updateStatus('Buffering...'));
+        nuevo_audio.addEventListener('playing', () => updateStatus('')); // Clear status when playing
+        nuevo_audio.addEventListener('error', () => {
+             console.error('Audio error:', nuevo_audio.error);
+             let errorMessage = 'Error playing stream.';
+             switch (nuevo_audio.error.code) {
+                case MediaError.MEDIA_ERR_ABORTED:
+                    errorMessage = 'Audio playback aborted.';
+                    break;
+                case MediaError.MEDIA_ERR_NETWORK:
+                    errorMessage = 'A network error caused the audio download to fail.';
+                    break;
+                case MediaError.MEDIA_ERR_DECODE:
+                    errorMessage = 'The audio playback was aborted due to a corruption problem or because the audio used 
+
+features the browser did not support.';
+                    break;
+                case MediaError.MEDIA_ERR_SRC_NOT_SUPPORTED:
+                    errorMessage = 'The audio could not be loaded, either because the server or network failed or because the 
+
+format is not supported.';
+                    break;
+                default:
+                    errorMessage = 'An unknown audio error occurred.';
+                    break;
+             }
+             updateStatus(errorMessage);
+        });
+         // Clear status on pause or end, though streams don't usually 'end' normally
+        nuevo_audio.addEventListener('pause', () => updateStatus('Pausado'));
+        nuevo_audio.addEventListener('ended', () => updateStatus('Transmisión finalizada')); // Unlikely for live streams
+
 
         var source = document.createElement("source");
         source.setAttribute("src", path);
-        source.setAttribute("type", "audio/mpeg"); 
+        source.setAttribute("type", "audio/mpeg"); // Assuming mpeg for most streams
         source.setAttribute("id", "reproductorSource");
+
+        // Consider checking the path extension or MIME type if possible to set 'type' correctly
+        // For now, 'audio/mpeg' is a common default for MP3 streams
 
         nuevo_audio.appendChild(source);
         audio_padre.appendChild(nuevo_audio);
@@ -222,27 +350,32 @@ POR CORTESIA DE"CORNETRON" El doctor las cornetas dañadas.</b>
         nuevo_audio.load();
         nuevo_audio.play().catch(error => {
             console.log("Autoplay prevented:", error);
-            // You might want to show a message asking the user to click play
+            updateStatus("Playback stopped. Please click play."); // Inform user if autoplay fails
         });
     }
 
     function cargarReproductor() {
         var select = document.getElementById("selectTrack");
-        // Check if select and options exist
-        if (!select || !select.options || select.options.length < 1) {
-             console.error("Select element or options not found.");
+        // Check if select and options exist and have at least 2 options (placeholder + 1 stream)
+        if (!select || !select.options || select.options.length < 2) {
+             console.error("Select element or insufficient options found.");
+             updateStatus("No streams available.");
              return;
         }
 
-        // Select the first actual radio option (index 0 based on the updated HTML)
-        var firstOption = select.options[0]; 
-        if (firstOption) {
-            // Set the select value to the first option's value so it's visually selected
-            select.value = firstOption.value;
-            // Call cambiarTrack with the first option to load and play it
-            cambiarTrack(firstOption);
+        // Select the second option (index 1) which is the first actual radio stream
+        var firstStreamOption = select.options[1];
+        if (firstStreamOption) {
+            // Set the select value to the first stream option's value so it's visually selected
+             // This might need adjustment if you want the placeholder to remain selected initially
+             // select.value = firstStreamOption.value; // Keep placeholder selected by default
+             // Call cambiarTrack with the first stream option to load and play it WITHOUT changing the select box value
+             cambiarTrack(firstStreamOption);
+             // Update the status message to indicate the first stream is loading/playing
+             updateStatus(`Loading: ${firstStreamOption.textContent}`);
         } else {
-            console.error("No valid options available to load initially.");
+            console.error("No valid stream options available to load initially.");
+            updateStatus("No streams available.");
         }
     }
 
@@ -252,6 +385,7 @@ POR CORTESIA DE"CORNETRON" El doctor las cornetas dañadas.</b>
     });
 </script>
 
+ </body>
 
-</body>
 </html>
+
