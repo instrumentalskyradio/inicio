@@ -1,509 +1,198 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-Y1XH84149Y"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cuenta Regresiva Mundial 2026</title>
+    
+    <!-- Iconos de Font Awesome para el logo de WhatsApp -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
-  gtag('config', 'G-Y1XH84149Y');
-</script>
-  <!-- Smartsupp Live Chat script -->
-  <script type="text/javascript">
-    var _smartsupp = _smartsupp || {};
-    _smartsupp.key = '2c4a10481a1f7d1bad61e17bc9bd98f5f560b6f5';
-    window.smartsupp||(function(d) {
-      var s,c,o=smartsupp=function(){ o._.push(arguments)};o._=[];
-      s=d.getElementsByTagName('script')[0];c=d.createElement('script');
-      c.type='text/javascript';c.charset='utf-8';c.async=true;
-      c.src='https://www.smartsuppchat.com/loader.js?';s.parentNode.insertBefore(c,s);
-    })(document);
-  </script>
-  <noscript> Powered by
-    <a href="https://www.smartsupp.com" target="_blank">Smartsupp</a></noscript>
-  <meta charset="UTF-8">
-  <title>Escuchas Sky Radio</title>
-  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    body,
-    html {
-      margin: 0;
-      padding: 0;
-      height:100%;
-     overflow-x: hidden; 
-      /* Prevent horizontal scroll */
-    }
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&q=80&w=1000') no-repeat center center fixed;
+            background-size: cover;
+            color: white;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+        }
 
-    body {
-      background-image:url("https://disenoswebpr.com/wp-content/uploads/2023/06/Como-Funciona-La-Radio-Online-Disenos-Web.webp");
-      background-repeat: no-repeat;
-      background-size: cover;
-      background-position: center;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      font-family: sans-serif;
-      color: white;
-      position: relative;
-      padding-top: 20px;
-      box-sizing: border-box;
-      /* Add padding at the bottom equal to the height of the fixed player container */
-      padding-bottom: 100px; /* Adjust based on player container height */
-    }
+        header { padding: 20px; }
+        h1 { font-size: 2.5rem; margin-bottom: 10px; text-transform: uppercase; color: #fff; }
+        h2 { font-weight: 300; letter-spacing: 2px; margin: 0; }
+        
+        #countdown {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px auto;
+            flex-wrap: wrap;
+            padding: 0 10px;
+            max-width: 95%;
+        }
 
-    /* Add a subtle overlay to improve text readability */
-    body::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.3);
-        z-index: -1;
-    }
+        .time-box {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 15px;
+            border-radius: 12px;
+            min-width: 90px;
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255,255,255,0.2);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
 
+        .time-box span { font-size: 2.5rem; display: block; font-weight: bold; }
+        .label { font-size: 0.8rem; text-transform: uppercase; color: #ffd700; margin-top: 5px; }
 
-    h1 {
-      text-shadow: 2px 2px 4px #000000;
-      font-size: 2em;
-      z-index: 1;
-      margin-top: 0;
-      margin-bottom: 20px;
-    }
+        /* Contenedor del Video Responsive */
+        .video-container {
+            margin: 20px auto;
+            width: 90%;
+            max-width: 650px;
+        }
+        
+        .video-aspect-ratio {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 */
+            height: 0;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
 
-    /* Container for player and select - Now Fixed */
-    .player-controls-container {
-        z-index: 10; /* High z-index to be on top */
-        position: fixed; /* Fixed position */
-        bottom: 0; /* Align to the bottom */
-        left: 0; /* Align to the left */
-        width: 100%; /* Full width */
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 15px;
-        padding: 15px 10px; /* Add some padding */
-        box-sizing: border-box; /* Include padding in width */
-        background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
-        box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.5); /* Optional shadow */
-    }
+        .video-aspect-ratio iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
 
-    #reproductorBox {
-        width: 100%;
-        max-width: 500px; /* Match select max-width */
-        display: flex;
-        justify-content: center;
-    }
+        footer {
+            margin-top: auto;
+            padding: 25px;
+            font-size: 1rem;
+            background: rgba(0,0,0,0.8);
+        }
 
-    #reproductor {
-        width: 100%;
-        height: 37.5px;
-    }
+        .brand { color: #ffd700; font-weight: bold; }
 
-    #selectTrack {
-        width: 100%;
-        max-width: 500px; /* Ensure select doesn't exceed container */
-        padding: 10px;
-        border-radius: 5px;
-        border: none;
-        background-color: rgba(255, 255, 255, 0.9); /* Slightly less transparent */
-        color: #333;
-        font-size: 1em;
-        cursor: pointer;
-        -webkit-appearance: none;
-        -moz-appearance: none;
-        appearance: none;
-         /* Add a dropdown arrow icon */
-        background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30"
+        /* BOTÓN FLOTANTE DE WHATSAPP */
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            width: 60px;
+            height: 60px;
+            background-color: #25d366;
+            color: #fff;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
+            z-index: 1100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
 
-fill="%23333" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>');
-        background-repeat: no-repeat;
-        background-position: right 10px center;
-        background-size: 15px;
-        padding-right: 30px;
-    }
+        .whatsapp-btn:hover {
+            background-color: #128c7e;
+            transform: scale(1.1);
+            color: #fff;
+        }
 
-     /* Style for the options in the select */
-    #selectTrack option {
-        padding: 10px;
-        background-color: white;
-        color: #333;
-    }
-
-    /* Style for the status message */
-    #statusMessage {
-        color: white;
-        font-size: 0.9em;
-        height: 1.2em; /* Reserve space to prevent layout shifts */
-        text-align: center;
-        margin-top: 5px;
-        margin-bottom: 0; /* Remove bottom margin as it's at the very bottom */
-        flex-shrink: 0; /* Prevent message from shrinking */
-    }
-
-     /* Adjust iframe and text block positioning */
-    body > div:nth-of-type(1) { /* Target the first div containing iframe and text */
-        z-index: 1; /* Keep it above background overlay */
-        margin-bottom: 20px; /* Add some space before the fixed player area */
-         width: 90%; /* Match body max-width or adjust as needed */
-         max-width: 600px; /* Optional: Limit width for better readability */
-         text-align: center; /* Center content within the div */
-    }
-
-     body > div:nth-of-type(1) p {
-        margin-top: 10px;
-        margin-bottom: 10px;
-     }
-     body > div:nth-of-type(1) center {
-        margin-top: 10px;
-     }
-
-
-    @media (max-width: 600px) {
-      h1 {
-        font-size: 1.5em;
-        margin-bottom: 15px;
-      }
-       body {
-           padding-top: 15px;
-           padding-bottom: 120px; /* Increase padding for smaller screens if player height increases */
-       }
-       .player-controls-container {
-            padding: 10px 5px; /* Reduce padding on smaller screens */
-       }
-       #selectTrack, #reproductorBox {
-           width: 95%; /* Use more width on small screens */
-           max-width: none; /* Allow full width */
-       }
-       #reproductor {
-           max-width: none; /* Allow full width */
-       }
-       body > div:nth-of-type(1) {
-           width: 95%;
-       }
-
-    }
-
-  </style>
-    <script type="importmap">
-        {
-            "imports": {
-                // Add any future library imports here
+        /* MEDIA QUERIES PARA MÓVILES */
+        @media (max-width: 600px) {
+            h1 { font-size: 1.6rem; }
+            h2 { font-size: 1.1rem; }
+            .time-box { min-width: 70px; padding: 10px; }
+            .time-box span { font-size: 1.8rem; }
+            
+            /* Ajuste del botón para que no estorbe */
+            .whatsapp-btn {
+                width: 50px;
+                height: 50px;
+                bottom: 15px;
+                right: 15px;
+                font-size: 25px;
+            }
+            
+            /* Espacio extra al final para que el botón no tape el texto del footer */
+            footer {
+                padding-bottom: 80px;
             }
         }
-    </script>
-
+    </style>
 </head>
-
 <body>
 
-  <center><h1>AGUA PAPÀ!</h1>
-  </center>
+    <header>
+        <h2>CUENTA REGRESIVA</h2>
+        <h1>Copa Mundial de la FIFA 2026</h1>
+        <p>México * Estados Unidos * Canadá</p>
+    </header>
 
-<div>
-  <center>
-    <p> sabado 17 de Mayo de 2025</p>
-    <p></p>
-    <p> Cambio BCV Bs 94,32/$ </p>
-    <p>Dolar Criminal Bs 127,75/$ </p>
-    
-    <p> </p>
-    <p>Día Internacional de la Fascinación por las Plantas.</p>
-    <p>Día Internacional de los Museos.</p>
-    </center>
-    <div>
-     <center> 
-       <iframe width="560" height="315" src="https://www.youtube.com/embed/Gqfyb65YUVo?si=WLQnDtls8Dou6wW1&amp;controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-       <p>Día Internacional de los Museos.</p>
-       <p></p>
-       <p></p>
-       <iframe width="350" height="215" src="https://www.youtube.com/embed/u2C_koZmacs?si=1_c0OpS4uzaHO0aT&amp;controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-       <p>Día Mundial contra la Hipertensión.</p>
-       <p></p>
-       <p></p>
-      <iframe width="350" height="215" src="https://www.youtube.com/embed/ioF07BQqkOQ?si=N3C24f_U3ivy5w-D" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-       <p>Día del Compositor Venezolano</p>
-       <p></p>
-       <p></p>   
-      <iframe width="550" height="215" src="https://www.youtube.com/embed/IcnvbAqvT6Y?si=_vuHgl--uk_rG88c" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-      <p>Día Internacional de la Familia</p>
-       <p></p>
-       <p></p>
-      <iframe width="350" height="215" src="https://www.youtube.com/embed/OQJ-xSgLlm8?si=zzIl0rASf5UMLqWz" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-      <p>Día Nacional de la Dramaturgia</p>
-       <p></p>
-       <p></p>
-      <iframe width="350" height="215" src="https://www.youtube.com/embed/t26-c6_JC-U?si=ySWY7rYJoMH9mV_x" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-       <p>Festividad de la Virgen de Fátima.</p>
-       <p></p>
-       <p></p>
-      
-      <iframe width="350" height="215" src="https://www.youtube.com/embed/ZjLF4osduFw?si=kDqL_XyYfsLDcSB2" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-      <p>Día Internacional de las Enfermeras.</p>
-       <p></p>
-       <p></p>
-      <iframe width="350" height="215" src="https://www.youtube.com/embed/w1iEy5d5Dqs?si=oDvZoiXoREfWYRzi" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-      <p>Día de la Madre.</p>
-       <p></p>
-       <p></p>
-      <iframe width="350" height="215" src="https://www.youtube.com/embed/LKkkG1_9BZM?si=HihDR7QfgD__2SWl" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-     <p>Día Nacional del Ingeniero Agrónomo</p>  
-       <p></p>
-       <p></p>
-     
-     <iframe width="350" height="215" src="https://www.youtube.com/embed/bmBQK-dQlds?si=Etxelc-fXVdMydnz" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-     <p>Día del Reportero Gráfico</p>  
-     <p></p>
-     <p></p>
-     <iframe width="350" height="215" src="https://www.youtube.com/embed/IxF1G_UGicM?si=Z6Gmaz7zxqFJ1_vN" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-     <p>Día Internacional Sin Dietas</p>  
-     <p></p>
-     <p></p>
-     <iframe width="350" height="215" src="https://www.youtube.com/embed/Ll2-O5PlPoc?si=SCOJNNauGaEtQyJ3" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-   <p>Día Mundial de la Higiene de las Manos </p>  
-   <p></p>
-    <iframe width="350" height="215" src="https://www.youtube.com/embed/2L08t1j9TBk?si=K2nynVxWwp-0q_gx&amp;controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-   <p>3 de mayo Dia internacional de la libertad de prensa".</p>  
-   <p></p>
-   <p></p>
-   <p></p>
- </center>    
-  </div>
-</div>
-<br>
-<br>
-<br>  
- <div class="player-controls-container">
-    <div id="reproductorBox"></div>
-    <select id = "selectTrack" onchange="cambiarTrack(this.options[this.selectedIndex]);">
-        <!-- Placeholder option added -->
-        <option value="" disabled selected>Seleccione su radio</option>
-        <!-- Existing options -->
-   
-         <option path="https://stream.zeno.fm/xnp3npkkvg0uv">INTRO</option>
-        <option path="https://uk19freenew.listen2myradio.com/live.mp3?typeportmount=ice_31399_stream">EFEMERIDES RADIO  </option>
-        <option path="http://panel.retrolandigital.com/listen/instrumental_hits_radio/listen">INSTRUMENTAL HITS RADIO</option>
-        <option path="https://edge05.cdn.bitflip.ee:8888/instrumental?_i=be4baa7c">RELAX INSTRUMENTAL</option>
+    <div id="countdown">
+        <div class="time-box"><span id="days">00</span><div class="label">Días</div></div>
+        <div class="time-box"><span id="hours">00</span><div class="label">Horas</div></div>
+        <div class="time-box"><span id="minutes">00</span><div class="label">Min</div></div>
+        <div class="time-box"><span id="seconds">00</span><div class="label">Seg</div></div>
+    </div>
 
-        <option path="https://sonicp.delseibotech.com/8016/stream">ROMANTICA 24/7</option>
-        <option path="https://stream-158.zeno.fm/cs3lrlhop3xvv?zt=eyJhbGciOiJIUzI1NiJ9.eyJzdHJlYW0iOiJjczNscmxob3AzeHZ2IiwiaG9zdCI6InN0cmVhbS0xNTguemVuby5mbSIsInJ0dGwiOjUsImp0aSI6Ikg0YlV6ZGh5VEZHNkpEUnZLRFNwbHciLCJpYXQiOjE3NDc0NTMxOTcsImV4cCI6MTc0NzQ1MzI1N30.EDQylwgaPUkzzRDUTZqw6WipPT-osZqNTHi2q-NY7Jw">BALADAS Y MAS</option>               
-        <option path="https://stream.zeno.fm/naa84dtd6f8uv">CIMA 95.1 FM</option>
-        <option path="https://stream-154.zeno.fm/02dze40162quv?zt=eyJhbGciOiJIUzI1NiJ9.eyJzdHJlYW0iOiIwMmR6ZTQwMTYycXV2IiwiaG9zdCI6InN0cmVhbS0xNTQuemVuby5mbSIsInJ0dGwiOjUsImp0aSI6IlZVMzRRQXlkVEllNnlFVnJFaWVBaUEiLCJpYXQiOjE3NDYxMTM0OTIsImV4cCI6MTc0NjExMzU1Mn0.u_ntjAAZf55xR9PiIu-m1-vehWbyX_-GGtCb3jeHM2k">RADIOBALADASYALGOMAS </option> 
-        <option path="https://rdnradio.stream.laut.fm/rdnradio">RDN RADIO</option>
-        <option path="https://2.mystreaming.net/uber-app/lrtimeless/icecast.audio">LOVE RADIO</option> 
-      
-       
-        <option path="https://stream-154.zeno.fm/fekp714epkhvv?zt=eyJhbGciOiJIUzI1NiJ9.eyJzdHJlYW0iOiJmZWtwNzE0ZXBraHZ2IiwiaG9zdCI6InN0cmVhbS0xNTQuemVuby5mbSIsInJ0dGwiOjUsImp0aSI6IldveHFYLUpHUkZHWGpES1VybXhGOUEiLCJpYXQiOjE3NDc0NTExOTUsImV4cCI6MTc0NzQ1MTI1NX0.NHvWFJi3IAsQbm8l6MrjjeHraXSg0PTfjDnZlHGyv4M">RADIO RETRO</option>
-        <option path="https://acp4.lorini.net/proxy/ur2070?mp=/stream">EXITO 99.9 FM</option> 
-        <option path="https://nl4.mystreaming.net/uber-app/lrmovies/icecast.audio">MOVIES LOVE RADIO</option>
-        <option path="https://2.mystreaming.net/er-app/beatles/icecast.audio">BEATLES RADIO </option>
-      
-        
-        <option path="https://sonicp.delseibotech.com/8014/stream">SALSA 24/7</option>
-        <option path="https://server6.globalhostla.com:9012/stream">FIESTA</option>
-        <option path="https://node-09.zeno.fm/2b9kfa1dzmzuv?">RADIO SALSA BAUL</option>
-        <option path="https://stream.zeno.fm/e2kzfpr34d0uv">FIESTA LATINA</option>
-        <option path="https://sonicp.delseibotech.com/8010/stream">MERENGUE 24/7 PURA</option>
-        <option path="https://cast20.plugstreaming.com:2020/stream/r981">RUMBA FM</option>
-        <option path="https://server6.globalhostla.com:9020/stream">CANDELA PURA</option>
+    <!-- Sección del Video -->
+    <div class="video-container">
+        <div class="video-aspect-ratio">
+            <iframe src="https://www.youtube.com/embed/iPMCj28XwNA?si=ANDqTP475-ALl5Rv" title="YouTube video player" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+    </div>
 
-        
-       <option path="https://nl4.mystreaming.net/uber-app/sportifylatinurban/icecast.audio">URBANA 24/7</option>
-      
-        
-       <option path="https://sonicp.delseibotech.com/8012/stream">BACHATAS 25/7</option>
+    <footer>
+        <p>Fecha de inicio: <span class="brand">11 de Junio de 2026</span></p>
+        <p>Administrado por: <span class="brand">El Socio</span></p>
+    </footer>
 
-       
-       <option path="https://laradiossl.online:9226/;">DJ SHAGGY VENEZUELA</option>
-       <option path="https://sc10.conectarhosting.com/proxy/djcarlo1?mp=/stream">DJ CARLOS RADIO</option>
-       <option path="https://stream.zeno.fm/xnp3npkkvg0uv">WEEKEND Mix Radio</option>
-       <option path="https://nl4.mystreaming.net/uber-app/sportifybpm160/icecast.audio">GYM RADIO </option>
-        
+    <!-- Botón de WhatsApp -->
+    <a href="https://wa.me/1234567890?text=Hola!%20Vengo%20desde%20la%20página%20del%20Mundial%202026" class="whatsapp-btn" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
 
-       
-       <option path="https://stream.zeno.fm/c3q3w8zfe18uv">RADIO RUMBOS</option>
-       <option path="https://acp4.lorini.net/proxy/ur2080?mp=/stream">UNION RADIO</option>
-       <option path="https://node-07.zeno.fm/tvqmp6dwk2zuv.aac?rj-ttl=5&rj-tok=AAABc_GuYdEAgvYBZ9BdnZ-40Q">RADIO HISPANA</option>
-       <option path="https://stream-175.zeno.fm/msm2h581u8ztv?zt=eyJhbGciOiJIUzI1NiJ9.eyJzdHJlYW0iOiJtc20yaDU4MXU4enR2IiwiaG9zdCI6InN0cmVhbS0xNzUuemVuby5mbSIsInJ0dGwiOjUsImp0aSI6Ik5PcC1RSU42UURPdnBtWmwwTEVQN0EiLCJpYXQiOjE3NDYwMjg4MzIsImV4cCI6MTc0NjAyODg5Mn0.warCgautsJFYhTz25M-6EArCouLOrRecMKMaTwJh9A8&adtonosListenerId=01JS1WJAKMTGBHXTTB0WDJ3KTB">PRISMA (CIRCUITO ALEGRIA)</option>
-       <option path="https://streamingned.com:7074/; external stream link">LA MUNDIAL FM VALENCIA</option>
-       <option path="https://server6.globalhostla.com:9014/stream">RQ 910 AM</option>
-       <option path="https://acp4.lorini.net/proxy/ur2070?mp=/stream">EXITO 99.9 FM</option>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const countdownDate = new Date("June 11, 2026 00:00:00").getTime();
 
-       
-       <option path="https://stream.zeno.fm/1jvlfyg36swuv">PURO LLANO RADIO</option>
-       <option path="https://stream.zeno.fm/12bg6xa7hv8uv">RADIO LLANEROS</option>
-      
-       
-       <option path="https://stream-162.zeno.fm/a2g7x1p6ynhvv?zt=eyJhbGciOiJIUzI1NiJ9.eyJzdHJlYW0iOiJhMmc3eDFwNnluaHZ2IiwiaG9zdCI6InN0cmVhbS0xNjIuemVuby5mbSIsInJ0dGwiOjUsImp0aSI6Ijhtb1BGVUR2UzR1RWhYanNKaXphd1EiLCJpYXQiOjE3NDYxMTIxMjIsImV4cCI6MTc0NjExMjE4Mn0.SbF1OS7h1Jg53Zc30zG6rKE7X1BjPFbM3tKM3Ty_dgI">CLASICOS DEL VALLENATO</option>
-       <option path="https://stream-155.zeno.fm/6rrp139oqextv?zt=eyJhbGciOiJIUzI1NiJ9.eyJzdHJlYW0iOiI2cnJwMTM5b3FleHR2IiwiaG9zdCI6InN0cmVhbS0xNTUuemVuby5mbSIsInJ0dGwiOjUsImp0aSI6ImVwVWtQMlRMUU02TFIyRTlqV3dZbEEiLCJpYXQiOjE3NDYxMTI0MjAsImV4cCI6MTc0NjExMjQ4MH0.UofsRXPKi6ICk1pswCRAWNqC5r-QkPTfb8i_SpnzPos">FIESTA VALLENATA</option>
+            const x = setInterval(function() {
+                const now = new Date().getTime();
+                const distance = countdownDate - now;
 
-       
-       <option path="https://panel.retrolandigital.com/listen/que_viva_mexico/listen">QUE VIVA MEXICO RADIO</option>
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-       
-       <option path="https://sonicp.delseibotech.com/8018/stream">CRISTIANA 24/7</option>
-       <option path="https://stream-173.zeno.fm/79kb3s0xqnhvv?zt=eyJhbGciOiJIUzI1NiJ9.eyJzdHJlYW0iOiI3OWtiM3MweHFuaHZ2IiwiaG9zdCI6InN0cmVhbS0xNzMuemVuby5mbSIsInJ0dGwiOjUsImp0aSI6InNUaGFFNzRjVHRlVGZaRWtjZVgySVEiLCJpYXQiOjE3NDYwMjc4MzEsImV4cCI6MTc0NjAyNzg5MX0.lf3SbkylOFZqoZHx-IUd0ir0AuMjS3mSE4wTS4FuR5o">SHADDAI</option>
-       <option path="https://stream-165.zeno.fm/h767w2imdyqtv?zt=eyJhbGciOiJIUzI1NiJ9.eyJzdHJlYW0iOiJoNzY3dzJpbWR5cXR2IiwiaG9zdCI6InN0cmVhbS0xNjUuemVuby5mbSIsInJ0dGwiOjUsImp0aSI6IjVRTUdsMnlfUjdLY1kxdVNaNnk0dUEiLCJpYXQiOjE3NDYxMTAzNzgsImV4cCI6MTc0NjExMDQzOH0.g2WprYJrhGwtYb9I0ww3ssTBcGUHCAv2fIOj9yHU6nU&adtonosListenerId=01JS1WJAKMTGBHXTTB0WDJ3KTB">OMEGA 97.3 FM</option>
-      
-       
-       <option path=" https://stream-172.zeno.fm/tae9pn0baveuv?zt=eyJhbGciOiJIUzI1NiJ9.eyJzdHJlYW0iOiJ0YWU5cG4wYmF2ZXV2IiwiaG9zdCI6InN0cmVhbS0xNzIuemVuby5mbSIsInJ0dGwiOjUsImp0aSI6IjliRnVPOXNPU3J1d0tTSGVIV1VqUnciLCJpYXQiOjE3NDYxMTEzODUsImV4cCI6MTc0NjExMTQ0NX0.uAOE-THFcvlJHlJ_8VaY-aw9GnVCDVqAc6HNIWQnekA">   INFANTIL MUSICA </option>
-       <option path="https://sd396babyradio1.dns-lcinternet.com/8006/stream">CUENTOS INFANTILES</option>
-       <option path="https://sd396babyradio1.dns-lcinternet.com/8004/stream">BABYRADIO  </option> 
+                // Actualizamos con padding para que siempre se vean 2 dígitos
+                document.getElementById("days").innerHTML = days.toString().padStart(2, '0');
+                document.getElementById("hours").innerHTML = hours.toString().padStart(2, '0');
+                document.getElementById("minutes").innerHTML = minutes.toString().padStart(2, '0');
+                document.getElementById("seconds").innerHTML = seconds.toString().padStart(2, '0');
 
-       
-       <option path="https://sonicp.delseibotech.com/8028/stream">CLASICOS HIT 24/7</option>
-       <option path="https://sonicp.delseibotech.com/8020/stream">RADIO AMERICAM 24/7</option>
-
-       
-       <option path="https://24253.live.streamtheworld.com/CARACOL_RADIOAAC.aac?dist=onlineradiobox">CARACOL RADIO</option>
-      
-      
-       <option path="https://stream-172.zeno.fm/8vd9wvkvv8jvv?zt=eyJhbGciOiJIUzI1NiJ9.eyJzdHJlYW0iOiI4dmQ5d3ZrdnY4anZ2IiwiaG9zdCI6InN0cmVhbS0xNzIuemVuby5mbSIsInJ0dGwiOjUsImp0aSI6IjRmNU01Q1ktVG5Tdm45bS1jM05WSWciLCJpYXQiOjE3NDc0NTIzODQsImV4cCI6MTc0NzQ1MjQ0NH0.NcVRJKPx4oMB_vQZAjDiQkxsPdsm7p6phiQ1WBhvir0">EDUCATIVA RADIO</option>
-     
-    </select>
-    <div id="statusMessage"></div> <!-- Added status message div -->
-</div>
-
-
-<script>
-    // Function to update the status message
-    function updateStatus(message) {
-        const statusDiv = document.getElementById('statusMessage');
-        if (statusDiv) {
-            statusDiv.textContent = message;
-        }
-    }
-
-    function cambiarTrack(track) {
-        // Check if track is the disabled placeholder
-        if (track && track.disabled) {
-            // If the selected option is the disabled placeholder, just clear status and return
-            updateStatus("");
-            var viejo_audio = document.getElementById("reproductor");
-             if (viejo_audio) {
-                viejo_audio.pause();
-                // Keep the player element visible but paused
-             }
-            return;
-        }
-
-        // Check if track and its path attribute exist for non-placeholder options
-        if (!track || !track.getAttribute) {
-            console.error("Invalid track selected.");
-            updateStatus("Error loading track.");
-            return;
-        }
-        var path = track.getAttribute("path");
-        if (!path) {
-             // This case should ideally not be hit for non-disabled options
-             console.error("Selected option has no 'path' attribute.");
-             updateStatus("Error: Invalid stream path.");
-             return;
-        }
-
-        var viejo_audio = document.getElementById("reproductor");
-        var audio_padre = document.getElementById("reproductorBox");
-
-        // Remove existing audio element if it exists
-        if (viejo_audio) {
-            viejo_audio.pause(); // Pause before removing
-            audio_padre.removeChild(viejo_audio);
-        }
-
-        updateStatus("Loading..."); // Show loading status
-
-        var nuevo_audio = document.createElement("audio");
-        nuevo_audio.setAttribute("id", "reproductor");
-        nuevo_audio.setAttribute("controls", "controls");
-        // Don't autoplay automatically here; rely on play().catch() below
-        // nuevo_audio.setAttribute("autoplay", "autoplay");
-
-        // Add event listeners for status messages
-        nuevo_audio.addEventListener('loadstart', () => updateStatus('Loading...'));
-        nuevo_audio.addEventListener('waiting', () => updateStatus('Buffering...'));
-        nuevo_audio.addEventListener('playing', () => updateStatus('')); // Clear status when playing
-        nuevo_audio.addEventListener('error', () => {
-             console.error('Audio error:', nuevo_audio.error);
-             let errorMessage = 'Error playing stream.';
-             switch (nuevo_audio.error.code) {
-                case MediaError.MEDIA_ERR_ABORTED:
-                    errorMessage = 'Audio playback aborted.';
-                    break;
-                case MediaError.MEDIA_ERR_NETWORK:
-                    errorMessage = 'A network error caused the audio download to fail.';
-                    break;
-                case MediaError.MEDIA_ERR_DECODE:
-                    errorMessage = 'The audio playback was aborted due to a corruption problem or because the audio used features the browser did not support.';
-                    break;
-                case MediaError.MEDIA_ERR_SRC_NOT_SUPPORTED:
-                    errorMessage = 'The audio could not be loaded, either because the server or network failed or because the format is not supported.';
-                    break;
-                default:
-                    errorMessage = 'An unknown audio error occurred.';
-                    break;
-             }
-             updateStatus(errorMessage);
+                if (distance < 0) {
+                    clearInterval(x);
+                    document.getElementById("countdown").innerHTML = "<h3>¡HA COMENZADO EL SUEÑO MUNDIALISTA!</h3>";
+                }
+            }, 1000);
         });
-         // Clear status on pause or end, though streams don't usually 'end' normally
-        nuevo_audio.addEventListener('pause', () => updateStatus('Pausado'));
-        nuevo_audio.addEventListener('ended', () => updateStatus('Transmisión finalizada')); // Unlikely for live streams
+    </script>
 
-
-        var source = document.createElement("source");
-        source.setAttribute("src", path);
-        source.setAttribute("type", "audio/mpeg"); // Assuming mpeg for most streams
-        source.setAttribute("id", "reproductorSource");
-
-        // Consider checking the path extension or MIME type if possible to set 'type' correctly
-        // For now, 'audio/mpeg' is a common default for MP3 streams
-
-        nuevo_audio.appendChild(source);
-        audio_padre.appendChild(nuevo_audio);
-
-         // Try loading the new source
-        nuevo_audio.load();
-        nuevo_audio.play().catch(error => {
-            console.log("Autoplay prevented:", error);
-            updateStatus("Playback stopped. Please click play."); // Inform user if autoplay fails
-        });
-    }
-
-    function cargarReproductor() {
-        var select = document.getElementById("selectTrack");
-        // Check if select and options exist and have at least 2 options (placeholder + 1 stream)
-        if (!select || !select.options || select.options.length < 2) {
-             console.error("Select element or insufficient options found.");
-             updateStatus("No streams available.");
-             return;
-        }
-
-        // Select the second option (index 1) which is the first actual radio stream
-        var firstStreamOption = select.options[1]; // Index 0 is now the placeholder
-        if (firstStreamOption) {
-            // Call cambiarTrack with the first stream option to load and play it
-            cambiarTrack(firstStreamOption);
-            // Update the status message to indicate the first stream is loading/playing
-            updateStatus(`Loading: ${firstStreamOption.textContent}`);
-
-             // DO NOT change the select value here. Keep the placeholder selected visually.
-             // The line below is removed: select.value = firstStreamOption.value;
-        } else {
-            console.error("No valid stream options available to load initially.");
-            updateStatus("No streams available.");
-        }
-    }
-
-    // Run cargarReproductor when the DOM is fully loaded
-    document.addEventListener('DOMContentLoaded', function() {
-        cargarReproductor();
-    });
-</script>
-
- </body>
-
+</body>
 </html>
